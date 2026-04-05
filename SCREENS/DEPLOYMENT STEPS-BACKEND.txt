@@ -355,6 +355,60 @@ E:\MURALI\NEST-JS\ecommerce-backend>
 
   //await app.listen(process.env.PORT ?? 3000);
   await app.listen(process.env.PORT || 3000);
+  
+  
+  ADD THIS IN tsconfig.json FILE
+   "rootDir": "./src",
+  
+git add .
+git commit -m "fixed build output path"
+git push
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==> Downloading cache...
+==> Cloning from https://github.com/gvnaresshuser/ecommerce-backend
+==> Checking out commit 84adf7faf8b8f886ec2b7997534ec67c53ff60c9 in branch main
+==> Downloaded 112MB in 2s. Extraction took 9s.
+==> Using Erlang version 28.0.2 (default)
+==> Using Elixir version 1.18.4 (default)
+==> Docs on specifying Elixir and Erlang versions: https://render.com/docs/elixir-erlang-versions
+* creating /opt/render/project/.mix/archives/hex-2.4.1-otp-27
+* creating /opt/render/project/.mix/elixir/1-18-otp-28/rebar3
+==> Running build command 'corepack enable && pnpm install && pnpm run build'...
+==> Using Node.js version 22.22.0 (default)
+==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+> ecommerce-backend@0.0.1 build /opt/render/project/src
+> nest build
+==> Uploading build...
+==> Uploaded in 4.0s. Compression took 9.1s
+Menu
+==> Build successful 🎉
+==> Deploying...
+==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+ Using Erlang version 28.0.2 (default)
+==> Using Elixir version 1.18.4 (default)
+==> Docs on specifying Elixir and Erlang versions: https://render.com/docs/elixir-erlang-versions
+==> Running 'pnpm run start:prod'
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.33.0.tgz
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 =============================================================================================
 Microsoft Windows [Version 10.0.26100.8039]
