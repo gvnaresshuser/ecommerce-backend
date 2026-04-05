@@ -225,9 +225,19 @@ To https://github.com/gvnaresshuser/react-ecommerce-frontend.git
 E:\MURALI\NEST-JS\react-ecommerce-frontend>
 
 
+---------------------------------------------
+REMOVE .env FILES FROM REPO
+Add to .gitignore
+Open .gitignore and add:
+.env*
 
+git rm --cached .env.development
+git rm --cached .env.production
 
-
+git add .
+git commit -m "removed env files from repo"
+git push
+---------------------------------------------
 
 
 
