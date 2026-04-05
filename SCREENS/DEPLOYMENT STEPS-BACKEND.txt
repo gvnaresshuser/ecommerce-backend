@@ -160,11 +160,69 @@ GIT PUSH AND REDEPLOY....
 ANY CODE CHANGE...DO THIS
 
 git add .
-git commit -m "fixed login bug and improved UI"
+git commit -m "fixed backend"
 git push
 =============================================================================================
+BACKEND
+git add .
+git remote add origin https://github.com/gvnaresshuser/ecommerce-backend.git
+git commit -m "fixed backend"
+git push
 =============================================================================================
+FRONTEND
+git add .
+git remote add origin https://github.com/gvnaresshuser/react-ecommerce-frontend.git
+git commit -m "fixed frontend"
+git push
 =============================================================================================
+git rm --cached .env.development
+git rm --cached .env.production
+=============================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "removed env files"
+[master 64a0e16] removed env files
+ 2 files changed, 40 deletions(-)
+ delete mode 100644 .env.development
+ delete mode 100644 .env.production
+
+E:\MURALI\NEST-JS\ecommerce-backend>git push
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 223 bytes | 223.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/gvnaresshuser/ecommerce-backend.git
+   4c39dbd..64a0e16  master -> master
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+=======================================================================
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git add .
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git remote add origin https://github.com/gvnaresshuser/react-ecommerce-frontend.git
+error: remote origin already exists.
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git commit -m "fixed frontend"
+[main 27f603e] fixed frontend
+ 5 files changed, 195 insertions(+), 3 deletions(-)
+ create mode 100644 SCREENS/DEPLOYMENT STEPS - Backend App.png
+ create mode 100644 SCREENS/DEPLOYMENT STEPS.png
+ create mode 100644 SCREENS/DEPLOYMENT STEPS.txt
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git push
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (10/10), 2.73 MiB | 866.00 KiB/s, done.
+Total 10 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/gvnaresshuser/react-ecommerce-frontend.git
+   02190bb..27f603e  main -> main
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>
 
 
 
