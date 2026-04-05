@@ -1,0 +1,1138 @@
+******************************************
+pnpm dlx @nestjs/cli new ecommerce-backend
+******************************************
+E:\MURALI\NEST-JS>pnpm dlx @nestjs/cli new ecommerce-backend
+
+cd ecommerce-backend
+pnpm run start:dev
+OR
+pnpm start:dev
+
+http://localhost:3000
+
+🚀 STEP 1: Project Setup (You already did 👍)
+pnpm dlx @nestjs/cli new ecommerce-backend
+cd ecommerce-backend
+
+🚀 STEP 2: Install Required Dependencies
+pnpm add drizzle-orm pg dotenv
+pnpm add -D drizzle-kit
+pnpm add @nestjs/config
+pnpm add @nestjs/jwt passport passport-jwt
+pnpm add bcrypt
+pnpm add class-validator class-transformer
+pnpm add razorpay
+pnpm add -D @types/passport-jwt
+pnpm add @nestjs/passport
+pnpm add -D @types/pg
+pnpm add cookie-parser
+pnpm add -D @types/cookie-parser
+pnpm add -D @types/passport-jwt
+
+pnpm add razorpay
+pnpm add -D @types/razorpay
+pnpm add -D @types/node
+pnpm add joi
+pnpm add -D @types/hapi__joi
+
+🚀 STEP 3: Folder Structure (VERY IMPORTANT 🔥)
+
+Inside src/ create:
+src/
+│
+├── common/
+│   ├── decorators/
+│   ├── filters/
+│   ├── guards/
+│   ├── interceptors/
+│   ├── pipes/
+│
+├── config/
+│
+├── db/
+│   ├── drizzle.ts
+│   ├── schema/
+│
+├── modules/
+│   ├── auth/
+│   ├── users/
+│   ├── products/
+│   ├── cart/
+│   ├── orders/
+│   ├── payment/
+
+🚀 STEP 4: Setup ENV
+
+Create .env
+
+DATABASE_URL=postgresql://pern_store_user:...render.com/...sslmode=verify-full
+
+JWT_SECRET=supersecret
+
+RAZORPAY_KEY_ID=rzp_test_7loOYJatPLp2HD
+RAZORPAY_KEY_SECRET=eUO2oYhFEu7XlbzOopp6UYGL
+
+-----------------
+🧠 Simple Analogy
+dotenv = 🪛 basic tool
+ConfigModule = 🧰 full toolkit (uses that tool inside)
+🚀 Final Answer
+
+👉 Yes — in NestJS apps:
+
+You use ConfigModule instead of directly using dotenv, because it wraps dotenv and provides powerful NestJS features.
+-----------------
+🚀 STEP 5: Configure ConfigModule - use this instead of dotenv
+// app.module.ts
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
+})
+export class AppModule {}
+
+🚀 STEP 7: Generate Modules (CORE STEP 🔥)
+
+Run these:
+nest g module modules/users
+nest g controller modules/users
+nest g service modules/users
+
+nest g module modules/products
+nest g controller modules/products
+nest g service modules/products
+
+nest g module modules/cart
+nest g controller modules/cart
+nest g service modules/cart
+
+nest g module modules/orders
+nest g controller modules/orders
+nest g service modules/orders
+
+nest g module modules/payment
+nest g controller modules/payment
+nest g service modules/payment
+
+nest g module modules/auth
+nest g controller modules/auth
+nest g service modules/auth
+
+🚀 STEP 8: Auth (JWT + Guard 🔥)
+Generate:
+nest g guard common/guards/jwt
+
+Install strategy support:
+pnpm add @nestjs/passport
+
+JWT Strategy
+nest g class modules/auth/jwt.strategy
+
+🚀 STEP 9: Common Layer (POWER DEMO 🔥)
+
+Generate all advanced features:
+
+nest g pipe common/pipes/parse-int
+nest g pipe common/pipes/reject-empty
+
+nest g interceptor common/interceptors/response
+
+nest g filter common/filters/http-exception
+
+nest g decorator common/decorators/current-user
+
+pnpm add -D @types/pg
+============================================================
+🚀 STEP 10: Product Features
+Features:
+GET /products
+GET /products?search=mouse
+GET /products/:id
+
+👉 You’ll demonstrate:
+
+Query pipes
+DTO validation
+Filtering
+
+🚀 STEP 11: Cart Module
+Flow:
+Add to cart
+Get cart items
+Remove item
+
+👉 Important:
+
+Cart can be DB-based OR in-memory (start simple)
+🚀 STEP 12: Orders Module
+Flow:
+Checkout → create order
+Save order + orderitems
+Status: PENDING, PAID, FAILED
+============================================================
+🚀 STEP 19: Drizzle Schema (BASED ON YOUR TABLES)
+
+We will map your DB tables → TypeScript schema using Drizzle ORM
+
+📁 Create file:
+src/db/schema/index.ts
+ADD CODE
+
+🚀 STEP 20: Connect Schema in Drizzle
+
+Update:
+
+📁 src/db/drizzle.ts
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
+import * as schema from './schema';
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+export const db = drizzle(pool, { schema });
+
+🚀 STEP 21: Create PRODUCT DTO (Validation + Pipes 🔥)
+📁 modules/products/dto/filter-products.dto.ts -- CREATED MANUALLY
+ADD CODE
+
+🚀 STEP 22: PRODUCTS SERVICE (SEARCH + PAGINATION 🔥)
+📁 products.service.ts
+ADD CODE
+
+🚀 STEP 23: PRODUCTS CONTROLLER
+📁 products.controller.ts
+ADD CODE
+
+🚀 STEP 24: ENABLE VALIDATION PIPE (GLOBAL 🔥)
+📁 main.ts
+ADD CODE
+
+DROP THESE TABLES THAT WERE CREATED USING SQL IN PG ADMIN TOOL
+ecom_nestjs_users;
+ecom_nestjs_products;
+ecom_nestjs_orders;
+ecom_nestjs_orderitems;
+
+DROP TABLE IF EXISTS ecom_nestjs_users CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_products CASCADE;
+
+You must drop child first, then parent
+DROP TABLE IF EXISTS ecom_nestjs_orderitems;
+DROP TABLE IF EXISTS ecom_nestjs_orders;
+DROP TYPE IF EXISTS payment CASCADE;
+
+CHECK IF TABLES ARE DELETED 
+select * from ecom_nestjs_users;
+select * from ecom_nestjs_products;
+select * from ecom_nestjs_orders;
+select * from ecom_nestjs_orderitems;
+
+USE DRIZZLE GENERATE AND IF NEW DATABASE MIGRATION TO CREATE TABLES AUTOMATICALLY
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🚀 OPTION 2: Drizzle Migrations (RECOMMENDED 🔥)
+
+👉 Let Drizzle ORM create tables for you
+
+🧩 How it works:
+You define schema in TS (you already did ✅)
+Drizzle generates SQL
+Drizzle runs SQL on DB
+🚀 Setup Drizzle Migrations
+Step 1: Create config file
+
+📁 drizzle.config.ts
+
+import type { Config } from 'drizzle-kit';
+
+export default {
+  schema: './src/db/schema/index.ts',
+  out: './drizzle',
+  driver: 'pg',
+  dbCredentials: {
+    connectionString: process.env.DATABASE_URL!,
+  },
+} satisfies Config;
+Step 2: Add scripts
+
+📁 package.json
+
+{
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  }
+}
+Step 3: Generate SQL
+pnpm db:generate
+
+👉 This creates:
+
+drizzle/
+  ├── 0000_initial.sql
+Step 4: Run migration
+pnpm db:migrate
+
+👉 Tables will be created automatically 🎉
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+PNPM GENERATE:
+-------------
+pnpm db:generate
+
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:generate
+
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 0 fks
+ecom_nestjs_orders 8 columns 0 indexes 0 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 0 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0000_curious_odin.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+--------------------------------------------------------------------
+SECOND TIME AFTER CHAINGING Schema
+--------------------------------------------------------------------
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 2 fks
+ecom_nestjs_orders 8 columns 0 indexes 1 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0001_left_rafael_vega.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+BEST APPROACH - DELETE DRIZZLE FOLDER AND ONCE AGAIN RUN -- pnpm db:generate
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:generate
+
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 2 fks
+ecom_nestjs_orders 8 columns 0 indexes 1 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0000_flat_dormammu.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NOW RUN SQL SCRIPT IN 0000_flat_dormammu.sql FILE IN PG ADMIN TOOL
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+SEEDING:
+=======
+📁 STEP 1: Create seed file
+mkdir src/db/seed
+
+📁 src/db/seed/seed.ts
+
+✨ STEP 2: Write Seed Script
+
+🚀 STEP 3: Add script in package.json
+{
+  "scripts": {
+    "db:seed": "ts-node src/db/seed/seed.ts"
+  }
+}
+🚀 STEP 4: Run seed
+pnpm db:seed
+
+====================================================================
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:seed
+
+> ecommerce-backend@0.0.1 db:seed E:\MURALI\NEST-JS\ecommerce-backend
+> ts-node src/db/seed/seed.ts
+
+🌱 Seeding started...
+✅ Seeding completed
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+====================================================================
+CHECK IN PG ADMIN TOOL WHETHER DATA GOT REALLY INSERTED...
+select * from ecom_nestjs_products
+====================================================================
+pnpm start:dev
+
+🚀 STEP 25: TEST API 🔥
+👉 URL:
+GET http://localhost:3000/products
+👉 Search:
+GET http://localhost:3000/products?search=mouse
+ALL RECORDS APPEAR IN RESPONSE
+👉 Pagination:
+GET http://localhost:3000/products?limit=2&offset=0
+[
+  {
+    "productId": 1,
+    "name": "Wireless Mouse",
+    "slug": "wireless-mouse",
+    "price": 25.99,
+    "description": "A sleek and responsive wireless mouse.",
+    "imageUrl": "https://www.sathya.in/media/3492/catalog/mouse.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  },
+  {
+    "productId": 2,
+    "name": "Bluetooth Speaker",
+    "slug": "bluetooth-speaker",
+    "price": 45,
+    "description": "Portable Bluetooth speaker.",
+    "imageUrl": "https://www.shutterstock.com/image-photo/black-portable-mini-speaker-colorful-600nw-2561079163.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  }
+]
+
+GET http://localhost:3000/products?search=mouse
+[
+  {
+    "productId": 1,
+    "name": "Wireless Mouse",
+    "slug": "wireless-mouse",
+    "price": 25.99,
+    "description": "A sleek and responsive wireless mouse.",
+    "imageUrl": "https://www.sathya.in/media/3492/catalog/mouse.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  }
+]
+
+JWT:
+===
+✅ Store JWT in HTTP-only cookie
+✅ Automatically sent with every request
+✅ Protect routes using Guard
+✅ Extract user from cookie
+
+🚀 STEP 27.1: Install cookie support
+pnpm add cookie-parser
+pnpm add -D @types/cookie-parser
+
+🚀 STEP 27.2: Enable cookies in NestJS
+📁 main.ts
+import * as cookieParser from 'cookie-parser';
+
+app.use(cookieParser());
+
+🚀 STEP 27.3: Modify LOGIN (Set Cookie)
+📁 auth.controller.ts
+ADD CODE
+
+🚀 STEP 27.4: JWT Strategy (Read from Cookie)
+Generate:
+nest g class modules/auth/jwt.strategy
+
+pnpm add -D @types/passport-jwt
+
+📁 jwt.strategy.ts
+ADD CODE
+
+🚀 STEP 27.5: JWT Guard
+Generate:
+nest g guard common/guards/jwt
+ADD CODE
+
+🚀 STEP 27.6: Register Strategy
+📁 auth.module.ts
+ADD CODE
+
+🚀 STEP 27.7: Custom Decorator (🔥 POWER)
+📁 common/decorators/current-user.decorator.ts
+ADD CODE
+--------------------------------------------------------------------------**
+🚀 STEP 27.8: Protect API
+Example: Orders
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../../common/guards/jwt.guard';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
+
+@UseGuards(JwtAuthGuard)
+@Get('my-orders')
+getMyOrders(@CurrentUser() user) {
+  return user;
+}
+🚀 STEP 27.9: TEST FLOW 🔥
+1️⃣ Login
+POST /auth/login
+
+👉 Cookie gets set:
+
+jwt=eyJhbGciOiJIUzI1NiIs...
+2️⃣ Call protected API
+GET /orders/my-orders
+--------------------------------------------------------------------------**
+STUDIO:
+======
+START DRIZZLE STUDIO
+pnpm drizzle-kit studio
+---------------------
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm drizzle-kit studio
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+Using 'pg' driver for database querying
+
+ Warning  Drizzle Studio is currently in Beta. If you find anything that is not working as expected or should be improved, feel free to create an issue on GitHub: https://github.com/drizzle-team/drizzle-kit-mirror/issues/new or write to us on Discord: https://discord.gg/WcRKz2FFxN
+
+Drizzle Studio is up and running on https://local.drizzle.studio
+---------------------
+TEST REGISTER:
+=============
+🚀 Example Request
+POST http://localhost:3000/auth/register
+{
+  "email": "test@gmail.com",
+  "username": "testuser",
+  "password": "123456",
+  "fullname": "Test User"
+}
+RESPONSE:
+--------
+{
+  "userId": 1,
+  "email": "test@gmail.com",
+  "username": "testuser",
+  "password": "$2b$10$9k6cPaJelhAQiZt6EmjpTOvmG0Av4EA5rvLvF3mQ.CBU.axGCqfFW",
+  "fullname": "Test User",
+  "googleId": null,
+  "roles": [
+    "customer"
+  ],
+  "address": null,
+  "city": null,
+  "state": null,
+  "country": null,
+  "createdAt": "2026-04-02T12:34:06.465Z"
+}
+TEST LOGIN:
+----------
+2️⃣ Test LOGIN API
+POST http://localhost:3000/auth/login
+Body:
+{
+  "username": "testuser",
+  "password": "123456"
+}
+RESPONSE:
+---------
+{
+  "message": "Login successful"
+}
+Response Cookies
+jwt
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzMzODUsImV4cCI6MTc3NTIxOTc4NX0.Cb9Xhv5aH4SL4A0aYegAirP6-pXW_xxTeUVF7o0Cb84
+
+ALWAYS FIRST LOGIN SO THAT JWT IS AVAILABLE IN COOKIES AND THEN TEST A GET CALL...
+🚀 Test:
+GET http://localhost:3000/auth/me
+RESPONSE:
+---------
+{
+  "userId": 1,
+  "username": "testuser"
+}
+
+Successfully built cookie-based authentication 🎉
+
+🔐 Login Flow Working:
+✅ User authenticated
+✅ Password verified (bcrypt)
+✅ JWT generated
+✅ JWT stored in cookie
+✅ Cookie sent to client
+
+⚠️ Production Reminder
+
+Later change:
+
+secure: true
+sameSite: 'strict'
+================================================
+🚀 STEP 28: CART MODULE + CHECKOUT FLOW
+
+We’ll build:
+
+🛒 Add to cart
+📦 View cart
+❌ Remove item
+🧾 Checkout → create order
+🧠 Design Decision (IMPORTANT)
+
+👉 For now (simple + fast):
+
+We’ll use in-memory cart (Map)
+Later you can move to DB
+🚀 STEP 28.1: Cart DTO
+📁 modules/cart/dto/add-to-cart.dto.ts
+ADD CODE
+
+cart.service.ts
+ADD CODE
+
+cart.controller.ts
+ADD CODE
+------------------------------------------------------------
+Test LOGIN API
+POST http://localhost:3000/auth/login
+Body:
+{
+  "username": "testuser",
+  "password": "123456"
+}
+IN COOKIE MANAGER COPY JWT
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzQ5MjUsImV4cCI6MTc3NTIyMTMyNX0.qGmrtdqM4OfXelsiH7c5w72F8QvAsoENgvbyZxnzSEg
+
+Headers-->HTTP Headers-->check RAW in text area add below with copied jwt from login cookies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzUxMjIsImV4cCI6MTc3NTIyMTUyMn0.btdvnHzTeJrzShXcvYnGOStu5XTWBijOTDfAHrdPtoQ
+------------------------------------------------------------
+
+🚀 STEP 28.4: TEST CART APIs
+🛒 Add to cart
+POST http://localhost:3000/cart
+{
+  "productId": 1,
+  "quantity": 2
+}
+Headers-->HTTP Headers-->check RAW in text area add below with copied jwt from login cookies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzUxMjIsImV4cCI6MTc3NTIyMTUyMn0.btdvnHzTeJrzShXcvYnGOStu5XTWBijOTDfAHrdPtoQ
+RESPONSE:
+--------
+[
+  {
+    "productId": 1,
+    "quantity": 4
+  }
+]
+
+📦 Get cart
+GET http://localhost:3000/cart
+RESPONSE:
+--------
+[
+  {
+    "productId": 1,
+    "quantity": 4
+  }
+]
+
+❌ Remove item
+DELETE http://localhost:3000/cart/1
+RESPONSE:
+--------
+[]
+✅ JWT Authentication (login/register)
+✅ Cookie + Header support
+✅ Protected routes with guards
+✅ Cart APIs working
+
+current setup (no cart table), the cart is fully managed on the frontend.
+
+🧠 Your Current Architecture
+Frontend → manages cart (state)
+Backend → only handles orders
+
+🚀 STEP 1: Create DTO File
+Create this file:
+src/orders/dto/create-order.dto.ts -- CREATED MANUALLY
+
+🚀 Alternative (If you want CLI)
+You can also generate via Nest CLI:
+nest g class orders/dto/create-order.dto --no-spec
+
+------------------------------------------------------------
+Test LOGIN API
+POST http://localhost:3000/auth/login
+Body:
+{
+  "username": "testuser",
+  "password": "123456"
+}
+IN COOKIE MANAGER COPY JWT
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzY2NjAsImV4cCI6MTc3NTIyMzA2MH0.l0Cu2cT1f9Vnr37BN8uPdw43V7WQ17tcm7NrSY83zD8
+
+Headers-->HTTP Headers-->check RAW in text area add below with copied jwt from login cookies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzY2NjAsImV4cCI6MTc3NTIyMzA2MH0.l0Cu2cT1f9Vnr37BN8uPdw43V7WQ17tcm7NrSY83zD8
+------------------------------------------------------------
+
+🧪 STEP 4: Test Again
+Request:
+POST http://localhost:3000/orders
+Headers:
+Authorization: Bearer YOUR_TOKEN
+Body:
+{
+  "items": [
+    { "productId": 1, "quantity": 2 }
+  ],
+  "paymentMethod": "CASH"
+}
+RESPONSE:
+--------
+{
+  "message": "Order placed successfully",
+  "orderId": 2
+}
+🚀 1. GET /orders → User Order History
+📄 orders.service.ts
+ADD CODE
+
+orders.controller.ts
+ADD CODE
+
+🧪 Test
+GET http://localhost:3000/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxMzY2NjAsImV4cCI6MTc3NTIyMzA2MH0.l0Cu2cT1f9Vnr37BN8uPdw43V7WQ17tcm7NrSY83zD8
+RESPONSE:
+--------
+[
+  {
+    "orderId": 2,
+    "userId": 1,
+    "status": "PLACED",
+    "date": "2026-04-02T13:31:41.306Z",
+    "amount": 51.98,
+    "total": 51.98,
+    "ref": null,
+    "paymentMethod": "CASH"
+  },
+  {
+    "orderId": 1,
+    "userId": 1,
+    "status": "PLACED",
+    "date": "2026-04-02T13:31:37.345Z",
+    "amount": 51.98,
+    "total": 51.98,
+    "ref": null,
+    "paymentMethod": "CASH"
+  }
+]
+============================================================================
+🧠 Final Architecture (Your Flow — Correct ✅)
+Cart → Checkout Page → Place Order → Backend → Razorpay Order → Razorpay UI → Payment Success → Verify → Update Order
+
+🔹 STEP 1: What happens when user clicks "Place Order"
+
+👉 Frontend calls:
+
+POST /payment/create-order
+
+👉 Backend does:
+
+Create DB order (PENDING)
+Call Razorpay
+Return razorpay_order_id
+
+🔥 Mental Model (VERY IMPORTANT)
+Module A → provides service
+Module A → exports service
+Module B → imports Module A
+Module B → can use service
+=================================================
+🧪 1️⃣ LOGIN (Get Cookie)
+POST http://localhost:3000/auth/login
+{
+  "username": "testuser",
+  "password": "123456"
+}
+
+IN COOKIE MANAGER COPY JWT
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxNDA1MDMsImV4cCI6MTc3NTIyNjkwM30.sUfDyL-zx3GQIyA-Ja9HlKHK48ccb_D-ME45CB3dJac
+
+Headers-->HTTP Headers-->check RAW in text area add below with copied jwt from login cookies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxNDA1MDMsImV4cCI6MTc3NTIyNjkwM30.sUfDyL-zx3GQIyA-Ja9HlKHK48ccb_D-ME45CB3dJac
+🧪 2️⃣ ADD TO CART
+POST http://localhost:3000/cart
+Body:
+{
+  "productId": 1,
+  "quantity": 2
+}
+RESPONSE:
+----------
+[
+  {
+    "productId": 1,
+    "quantity": 4
+  }
+]
+----------------------
+ADDED ANOTHER ITEM
+{
+  "productId": 2,
+  "quantity": 1
+}
+RESPONSE:
+--------
+[
+  {
+    "productId": 1,
+    "quantity": 4
+  },
+  {
+    "productId": 2,
+    "quantity": 1
+  }
+]
+🧪 3️⃣ VIEW CART
+GET http://localhost:3000/cart
+RESPONSE:
+--------
+[
+  {
+    "productId": 1,
+    "quantity": 4
+  },
+  {
+    "productId": 2,
+    "quantity": 1
+  }
+]
+🧪 4️⃣ CHECKOUT (🔥 MAIN TEST)
+POST http://localhost:3000/orders/checkout
+
+👉 No body required (cart-based)
+RESPONSE:
+---------
+{
+  "message": "Order placed successfully",
+  "orderId": 3
+}
+🧪 5️⃣ VERIFY ORDERS
+GET http://localhost:3000/orders
+RESPONSE:
+---------
+[
+  {
+    "orderId": 3,
+    "userId": 1,
+    "status": "PLACED",
+    "date": "2026-04-02T14:50:34.239Z",
+    "amount": 148.96,
+    "total": 148.96,
+    "ref": null,
+    "paymentMethod": "RAZORPAY"
+  },
+  {
+    "orderId": 2,
+    "userId": 1,
+    "status": "PLACED",
+    "date": "2026-04-02T13:31:41.306Z",
+    "amount": 51.98,
+    "total": 51.98,
+    "ref": null,
+    "paymentMethod": "CASH"
+  },
+  {
+    "orderId": 1,
+    "userId": 1,
+    "status": "PLACED",
+    "date": "2026-04-02T13:31:37.345Z",
+    "amount": 51.98,
+    "total": 51.98,
+    "ref": null,
+    "paymentMethod": "CASH"
+  }
+]
+SELECT * FROM ecom_nestjs_orderitems;
+1	1	1	2	25.99
+2	2	1	2	25.99
+3	3	1	4	25.99
+4	3	2	1	45.00
+
+✔ Multiple orders created correctly
+✔ Order-items mapped correctly
+✔ Same product reused across orders
+✔ Multiple items per order (order_id = 3) ✅
+✔ Price stored per item (important for history)
+
+🛒 Complete Order Pipeline
+Cart → Checkout → Orders → OrderItems → Database
+
+🚀 STEP 29: Razorpay Integration (End-to-End)
+🧠 Final Flow
+Cart → Checkout → DB Order (PENDING)
+→ Razorpay Order → Razorpay UI
+→ Verify Signature → Update Order → PAID
+
+🚀 29.1 Install SDK
+pnpm add razorpay
+pnpm add -D @types/razorpay
+
+🚀 29.2 Add ENV
+RAZORPAY_KEY_ID=rzp_test_7loOYJatPLp2HD
+RAZORPAY_KEY_SECRET=eUO2oYhFEu7XlbzOopp6UYGL
+
+
+🚀 29.3 Payment Service
+📁 payment.service.ts
+ADD CODE
+
+🚀 29.4 Payment Controller
+📁 payment.controller.ts
+ADD CODE
+
+🚀 29.5 OrdersService Updates
+UPDATE CODE
+
+🚀 29.6 Verify Payment (CRITICAL 🔐)
+📁 payment.controller.ts
+ADD CODE
+
+🚀 29.7 Frontend Flow (Important)
+const res = await fetch('/payment/create-order', { method: 'POST' });
+const data = await res.json();
+
+const options = {
+  key: data.key,
+  amount: data.amount,
+  order_id: data.razorpayOrderId,
+
+  handler: async function (response) {
+    await fetch('/payment/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(response),
+    });
+  }
+};
+
+const rzp = new Razorpay(options);
+rzp.open();
+
+
+=================================================
+🧪 TESTING FLOW
+1️.Login → get cookie
+POST http://localhost:3000/auth/login
+{
+  "username": "testuser",
+  "password": "123456"
+}
+Http Headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzUxNDM0NjEsImV4cCI6MTc3NTIyOTg2MX0.LtzBH_qttPd6eYErfeJuyTyIqXGskFJZIrV1t3xTAlE
+
+2️.Add to cart
+POST http://localhost:3000/cart
+{
+  "productId": 1,
+  "quantity": 20
+}
+
+3️.Call:
+POST http://localhost:3000/payment/create-order
+RESPONSE:
+--------
+-------------------------------------------------------------------------------------------------------
+{
+  "orderId": 4,
+  "razorpayOrderId": "order_SYfmsdVJkCyUzg",
+  "amount": 51980,
+  "key": "rzp_test_7loOYJatPLp2HD"
+}
+SELECT * FROM ecom_nestjs_orders
+4	1	"PLACED"	"2026-04-02 15:25:49.096914"	519.8	519.8	"order_SYfmsdVJkCyUzg"	"RAZORPAY"
+-------------------------------------------------------------------------------------------------------
+👉 Response:
+
+{
+  "orderId": 4,
+  "razorpayOrderId": "order_xxx",
+  "amount": 9600
+}
+4️.Razorpay UI opens → pay using:
+UPI: success@razorpay
+
+5️.Verify API called
+POST /payment/verify
+
+6️.Check DB
+SELECT * FROM ecom_nestjs_orders;
+
+👉 Status should be:
+
+PAID ✅
+🔥 What you just built
+Feature	Status
+Payment gateway	✅
+Razorpay order	✅
+Secure verification	✅
+Order status update	✅
+End-to-end flow	✅
+============================= IMPORTANT NOTE ====================================
+👉 NestJS modules are isolated
+
+So:
+
+OrdersService exists in OrdersModule
+
+👉 But PaymentModule cannot see it unless:
+
+✔ OrdersModule exports it
+✔ PaymentModule imports OrdersModule
+
+🚀 ✅ FIX (STEP-BY-STEP)
+✅ STEP 1: Export OrdersService
+
+📁 orders.module.ts
+
+import { Module } from '@nestjs/common';
+import { OrdersService } from './orders.service';
+import { OrdersController } from './orders.controller';
+import { CartModule } from '../cart/cart.module';
+
+@Module({
+  imports: [CartModule],
+  controllers: [OrdersController],
+  providers: [OrdersService],
+  exports: [OrdersService], // ✅ VERY IMPORTANT
+})
+export class OrdersModule {}
+✅ STEP 2: Import OrdersModule in PaymentModule
+
+📁 payment.module.ts
+
+import { Module } from '@nestjs/common';
+import { PaymentController } from './payment.controller';
+import { PaymentService } from './payment.service';
+import { OrdersModule } from '../orders/orders.module'; // ✅
+import { CartModule } from '../cart/cart.module'; // ✅
+
+@Module({
+  imports: [OrdersModule, CartModule], // ✅ ADD BOTH
+  controllers: [PaymentController],
+  providers: [PaymentService],
+})
+export class PaymentModule {}
+🧠 Dependency Flow (IMPORTANT)
+OrdersModule → exports OrdersService
+PaymentModule → imports OrdersModule
+PaymentController → can use OrdersService ✅
+🔥 Mental Model (VERY IMPORTANT)
+
+👉 Always remember:
+
+Service in Module A
+→ must be exported
+→ Module B must import Module A
+→ then usable in Module B
+============================= IMPORTANT NOTE ====================================
+
+FRONTEND STARTS HERE.....
+🧠 Features (Aligned with your backend)
+Products → Search → Add to Cart → Cart → Checkout → Razorpay → Orders
+
+UPI
+success@razorpay
+--------------------------------------------------
+google search razorpay dashboard
+https://dashboard.razorpay.com/app/dashboard
+Google signin id
+venkatdada369@gmail.com
+--------------------------------------------------
+
+📦 1. Install Drizzle Studio
+pnpm add drizzle-kit
+
+👉 (Studio is part of drizzle-kit — no separate “studio” package)
+
+🚀 2. Add Script in package.json
+"scripts": {
+  "db:migrate": "drizzle-kit migrate",
+  "db:studio": "drizzle-kit studio"
+}
+▶️ 3. Start Studio
+pnpm db:studio
+
+ https://local.drizzle.studio
+ 
+
+ 
+=============================================================
+CHANGED THIS IN index.ts BACKEND SCHEMA
+export const orderStatusEnum = pgEnum('order_status', [
+  'PLACED',
+  'PAID',
+  'FAILED',
+  'SHIPPED',
+  'DELIVERED',
+  'CANCELLED',
+]);
+-------------------------------------------------------------
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm drizzle-kit generate
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 2 fks
+ecom_nestjs_orders 9 columns 0 indexes 1 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0002_medical_changeling.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm drizzle-kit migrate
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+Using 'pg' driver for database querying
+[✓] migrations applied successfully!
+E:\MURALI\NEST-JS\ecommerce-backend>
+=============================================================
+[6:01:00 pm] File change detected. Starting incremental compilation...
+
+[6:01:01 pm] Found 0 errors. Watching for file changes.
+
+APP DB URL: postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6slnslm5p6s73atcljg-a.singapore-postgres.render.com/perns_store_r9l1?sslmode=verify-full
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [NestFactory] Starting Nest application...
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] ConfigHostModule dependencies initialized +242ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] UsersModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] AppModule dependencies initialized +5ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] ProductsModule dependencies initialized +0ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] CartModule dependencies initialized +3ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] PaymentModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [InstanceLoader] OrdersModule dependencies initialized +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] AppController {/}: +18ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/, GET} route +7ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] UsersController {/users}: +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] ProductsController {/products}: +0ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/products, GET} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] CartController {/cart}: +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/cart, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/cart, GET} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/cart/:productId, DELETE} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] OrdersController {/orders}: +0ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders/:id, GET} route +3ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders/razorpay/create-order, POST} route +3ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders/razorpay/verify, POST} route +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders, GET} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders/checkout, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/orders/:id/status, PATCH} route +3ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] PaymentController {/payment}: +1ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/payment/create-order, POST} route +10ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/payment/verify, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RoutesResolver] AuthController {/auth}: +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/register, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/login, POST} route +6ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/logout, POST} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/me, GET} route +2ms
+[Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [NestApplication] Nest application successfully started +9ms

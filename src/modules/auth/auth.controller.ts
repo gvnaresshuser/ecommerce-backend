@@ -1,0 +1,89 @@
+import { Controller, Post, Body, Res } from '@nestjs/common';
+import { AuthService } from './auth.service';
+
+import type { Response } from 'express';
+import { LoginDto } from '../users/dto/login.dto';
+import { RegisterDto } from '../users/dto/register.dto';
+
+import { Get, UseGuards } from '@nestjs/common';
+import { CurrentUser } from 'src/common/decorators/current-user/current-user.decorator';
+import { JwtAuthGuard } from 'src/common/guards/jwt/jwt.guard';
+
+@Controller('auth')
+export class AuthController {
+    constructor(private readonly authService: AuthService) { }
+
+    // ✅ REGISTER API
+    @Post('register')
+    async register(@Body() dto: RegisterDto) {
+        return this.authService.register(dto);
+    }
+
+    // ✅ LOGIN API
+    @Post('login')
+    async login(@Body() dto: LoginDto, @Res({ passthrough: true }) res: Response) {
+        const result = await this.authService.login(dto);
+
+        res.cookie('jwt', result.access_token, {//manually set cookie
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 24 * 60 * 60 * 1000,
+        });
+
+        return { message: 'Login successful', token: result.access_token, };// Nest handles this
+    }
+    //---------------------------
+    @Post('logout') 
+    logout(@Res({ passthrough: true }) res: Response) {
+        res.clearCookie('jwt', {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+        });
+        return { message: 'Logged out' };
+    }
+    //---------------------------
+
+    @UseGuards(JwtAuthGuard)
+    @Get('me')
+    getProfile(@CurrentUser() user: any) {
+        return user;
+    }
+}
+/*
+🧠 What is @Res() in NestJS?
+👉 @Res() = Response object (from Express)
+@Res() res: Response
+
+👉 Gives you direct access to the raw Express response
+
+🔧 Example
+res.cookie('jwt', token);
+res.send({ message: "done" });
+
+👉 You are manually controlling response
+
+⚠️ Problem with plain @Res()
+
+If you use:
+
+@Res() res: Response
+
+👉 NestJS stops automatic response handling
+
+So this WON’T work:
+
+return { message: "Login success" }; ❌
+
+👉 Because you took full control
+
+✅ Solution → passthrough: true
+🔥 What is passthrough: true?
+@Res({ passthrough: true }) res: Response
+
+👉 Means:
+
+“Let me MODIFY response (cookies, headers)
+BUT NestJS still sends the response automatically”
+*/

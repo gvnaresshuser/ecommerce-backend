@@ -1,0 +1,597 @@
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS>pnpm dlx @nestjs/cli new ecommerce-backend
+Packages: +211
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 211, reused 193, downloaded 18, added 211, done
+✨  We will scaffold your app in a few seconds..
+
+√ Which package manager would you ❤️  to use? pnpm
+CREATE ecommerce-backend/.prettierrc (56 bytes)
+CREATE ecommerce-backend/eslint.config.mjs (934 bytes)
+CREATE ecommerce-backend/nest-cli.json (179 bytes)
+CREATE ecommerce-backend/package.json (2058 bytes)
+CREATE ecommerce-backend/README.md (5134 bytes)
+CREATE ecommerce-backend/tsconfig.build.json (101 bytes)
+CREATE ecommerce-backend/tsconfig.json (702 bytes)
+CREATE ecommerce-backend/src/app.controller.ts (286 bytes)
+CREATE ecommerce-backend/src/app.module.ts (259 bytes)
+CREATE ecommerce-backend/src/app.service.ts (150 bytes)
+CREATE ecommerce-backend/src/main.ts (236 bytes)
+CREATE ecommerce-backend/src/app.controller.spec.ts (639 bytes)
+CREATE ecommerce-backend/test/jest-e2e.json (192 bytes)
+CREATE ecommerce-backend/test/app.e2e-spec.ts (754 bytes)
+
+√ Installation in progress... ☕
+
+🚀  Successfully created project ecommerce-backend
+👉  Get started with the following commands:
+
+$ cd ecommerce-backend
+$ pnpm run start
+
+
+                          Thanks for installing Nest 🙏
+                 Please consider donating to our open collective
+                        to help us maintain this package.
+
+
+               🍷  Donate: https://opencollective.com/nest
+
+
+E:\MURALI\NEST-JS>
+======================================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/users
+CREATE src/modules/users/users.module.ts (86 bytes)
+UPDATE src/app.module.ts (419 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/users
+CREATE src/modules/users/users.controller.ts (103 bytes)
+CREATE src/modules/users/users.controller.spec.ts (503 bytes)
+UPDATE src/modules/users/users.module.ts (174 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/users
+CREATE src/modules/users/users.service.ts (93 bytes)
+CREATE src/modules/users/users.service.spec.ts (471 bytes)
+UPDATE src/modules/users/users.module.ts (251 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/products
+CREATE src/modules/products/products.module.ts (89 bytes)
+UPDATE src/app.module.ts (504 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/products
+CREATE src/modules/products/products.controller.ts (109 bytes)
+CREATE src/modules/products/products.controller.spec.ts (524 bytes)
+UPDATE src/modules/products/products.module.ts (186 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/products
+CREATE src/modules/products/products.service.ts (96 bytes)
+CREATE src/modules/products/products.service.spec.ts (492 bytes)
+UPDATE src/modules/products/products.module.ts (272 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/cart
+CREATE src/modules/cart/cart.module.ts (85 bytes)
+UPDATE src/app.module.ts (573 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/cart
+CREATE src/modules/cart/cart.controller.ts (101 bytes)
+CREATE src/modules/cart/cart.controller.spec.ts (496 bytes)
+UPDATE src/modules/cart/cart.module.ts (170 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/cart
+CREATE src/modules/cart/cart.service.ts (92 bytes)
+CREATE src/modules/cart/cart.service.spec.ts (464 bytes)
+UPDATE src/modules/cart/cart.module.ts (244 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/orders
+CREATE src/modules/orders/orders.module.ts (87 bytes)
+UPDATE src/app.module.ts (650 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/orders
+CREATE src/modules/orders/orders.controller.ts (105 bytes)
+CREATE src/modules/orders/orders.controller.spec.ts (510 bytes)
+UPDATE src/modules/orders/orders.module.ts (178 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/orders
+CREATE src/modules/orders/orders.service.ts (94 bytes)
+CREATE src/modules/orders/orders.service.spec.ts (478 bytes)
+UPDATE src/modules/orders/orders.module.ts (258 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/payment
+CREATE src/modules/payment/payment.module.ts (88 bytes)
+UPDATE src/app.module.ts (731 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/payment
+CREATE src/modules/payment/payment.controller.ts (107 bytes)
+CREATE src/modules/payment/payment.controller.spec.ts (517 bytes)
+UPDATE src/modules/payment/payment.module.ts (182 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/payment
+CREATE src/modules/payment/payment.service.ts (95 bytes)
+CREATE src/modules/payment/payment.service.spec.ts (485 bytes)
+UPDATE src/modules/payment/payment.module.ts (265 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module modules/auth
+CREATE src/modules/auth/auth.module.ts (85 bytes)
+UPDATE src/app.module.ts (800 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g controller modules/auth
+CREATE src/modules/auth/auth.controller.ts (101 bytes)
+CREATE src/modules/auth/auth.controller.spec.ts (496 bytes)
+UPDATE src/modules/auth/auth.module.ts (170 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service modules/auth
+CREATE src/modules/auth/auth.service.ts (92 bytes)
+CREATE src/modules/auth/auth.service.spec.ts (464 bytes)
+UPDATE src/modules/auth/auth.module.ts (244 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>code .
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add drizzle-orm pg dotenv
+ WARN  3 deprecated subdependencies found: glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +16
+++++++++++++++++
+Progress: resolved 682, reused 662, downloaded 1, added 16, done
+
+dependencies:
++ dotenv 17.4.0
++ drizzle-orm 0.45.2
++ pg 8.20.0
+
+╭ Warning ───────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                            │
+│   Ignored build scripts: @nestjs/core@11.1.17, unrs-resolver@1.11.1.                       │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.   │
+│                                                                                            │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 14m 5.6s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D drizzle-kit
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +13
++++++++++++++
+Progress: resolved 766, reused 674, downloaded 2, added 13, done
+
+devDependencies:
++ drizzle-kit 0.31.10
+
+╭ Warning ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│   Ignored build scripts: @nestjs/core@11.1.17, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,                     │
+│   unrs-resolver@1.11.1.                                                                                              │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                             │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 4m 24.8s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add @nestjs/config
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +5
++++++
+Progress: resolved 771, reused 681, downloaded 0, added 5, done
+
+dependencies:
++ @nestjs/config 4.0.3
+
+╭ Warning ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│   Ignored build scripts: @nestjs/core@11.1.17, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,                     │
+│   unrs-resolver@1.11.1.                                                                                              │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                             │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 13.7s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add @nestjs/jwt passport passport-jwt
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +20
+++++++++++++++++++++
+Progress: resolved 791, reused 695, downloaded 6, added 20, done
+
+dependencies:
++ @nestjs/jwt 11.0.2
++ passport 0.7.0
++ passport-jwt 4.0.1
+
+╭ Warning ─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│   Ignored build scripts: @nestjs/core@11.1.17, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,                     │
+│   unrs-resolver@1.11.1.                                                                                              │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                             │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 9.8s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add bcrypt
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +3
++++
+Progress: resolved 794, reused 704, downloaded 0, added 3, done
+
+dependencies:
++ bcrypt 6.0.0
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 15.4s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add class-validator class-transformer
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +11 -6
++++++++++++------
+Progress: resolved 799, reused 709, downloaded 0, added 11, done
+
+dependencies:
++ class-transformer 0.5.1
++ class-validator 0.15.1
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 17s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add razorpay
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +4
+++++
+Progress: resolved 803, reused 710, downloaded 3, added 4, done
+
+dependencies:
++ razorpay 2.9.6
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 23.2s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add @nestjs/passport
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +1
++
+Progress: resolved 804, reused 713, downloaded 1, added 1, done
+
+dependencies:
++ @nestjs/passport 11.0.5
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 6s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g guard common/guards/jwt
+CREATE src/common/guards/jwt/jwt.guard.ts (309 bytes)
+CREATE src/common/guards/jwt/jwt.guard.spec.ts (163 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g class modules/auth/jwt.strategy
+CREATE src/modules/auth/jwt.strategy/jwt.strategy.ts (29 bytes)
+CREATE src/modules/auth/jwt.strategy/jwt.strategy.spec.ts (175 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g pipe common/pipes/parse-int
+CREATE src/common/pipes/parse-int/parse-int.pipe.ts (232 bytes)
+CREATE src/common/pipes/parse-int/parse-int.pipe.spec.ts (180 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g pipe common/pipes/reject-empty
+CREATE src/common/pipes/reject-empty/reject-empty.pipe.ts (235 bytes)
+CREATE src/common/pipes/reject-empty/reject-empty.pipe.spec.ts (192 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g interceptor common/interceptors/response
+CREATE src/common/interceptors/response/response.interceptor.ts (323 bytes)
+CREATE src/common/interceptors/response/response.interceptor.spec.ts (207 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g filter common/filters/http-exception
+CREATE src/common/filters/http-exception/http-exception.filter.ts (201 bytes)
+CREATE src/common/filters/http-exception/http-exception.filter.spec.ts (208 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>nest g decorator common/decorators/current-user
+CREATE src/common/decorators/current-user/current-user.decorator.ts (135 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add @nestjs/passport
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +1
++
+Progress: resolved 804, reused 713, downloaded 1, added 1, done
+
+dependencies:
++ @nestjs/passport 11.0.5
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 6s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D @types/pg
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +2 -1
+++-
+Progress: resolved 805, reused 715, downloaded 0, added 2, done
+
+devDependencies:
++ @types/pg 8.20.0
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 7m 59.4s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:generate
+
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 0 fks
+ecom_nestjs_orders 8 columns 0 indexes 0 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 0 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0000_curious_odin.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:generate
+
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 2 fks
+ecom_nestjs_orders 8 columns 0 indexes 1 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0001_left_rafael_vega.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:seed
+
+> ecommerce-backend@0.0.1 db:seed E:\MURALI\NEST-JS\ecommerce-backend
+> ts-node src/db/seed/seed.ts
+
+🌱 Seeding started...
+✅ Seeding completed
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+GET http://localhost:3000/products
+
+[
+  {
+    "productId": 1,
+    "name": "Wireless Mouse",
+    "slug": "wireless-mouse",
+    "price": 25.99,
+    "description": "A sleek and responsive wireless mouse.",
+    "imageUrl": "https://www.sathya.in/media/3492/catalog/mouse.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  },
+  {
+    "productId": 2,
+    "name": "Bluetooth Speaker",
+    "slug": "bluetooth-speaker",
+    "price": 45,
+    "description": "Portable Bluetooth speaker.",
+    "imageUrl": "https://www.shutterstock.com/image-photo/black-portable-mini-speaker-colorful-600nw-2561079163.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  },
+  {
+    "productId": 3,
+    "name": "Gaming Keyboard",
+    "slug": "gaming-keyboard",
+    "price": 89.5,
+    "description": "Mechanical RGB keyboard.",
+    "imageUrl": "https://www.shutterstock.com/image-photo/gaming-keyboard-rgb-light-white-260nw-1920716873.jpg",
+    "createdAt": "2026-04-02T09:22:15.533Z"
+  }
+]
+======================================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add cookie-parser
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +2
+++
+Progress: resolved 807, reused 717, downloaded 0, added 2, done
+
+dependencies:
++ cookie-parser 1.4.7
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 5m 46.4s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D @types/cookie-parser
+Progress: resolved 40, reused 39, downloaded 1, added 0
+
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g class modules/auth/jwt.strategy
+CREATE src/modules/auth/jwt.strategy/jwt.strategy.ts (29 bytes)
+CREATE src/modules/auth/jwt.strategy/jwt.strategy.spec.ts (175 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D @types/passport-jwt
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +3
++++
+Progress: resolved 811, reused 718, downloaded 3, added 3, done
+
+devDependencies:
++ @types/passport-jwt 4.0.1
+
+╭ Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                   │
+│   Ignored build scripts: @nestjs/core@11.1.17, bcrypt@6.0.0, esbuild@0.18.20, esbuild@0.25.12, esbuild@0.27.5,    │
+│   unrs-resolver@1.11.1.                                                                                           │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.                          │
+│                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Done in 5.5s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D @types/node
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 10.32.1 → 10.33.0.   │
+   │   Changelog: https://pnpm.io/v/10.33.0   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Already up to date
+Progress: resolved 811, reused 721, downloaded 0, added 0, done
+Done in 2m 56.3s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add joi
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +8
+++++++++
+Progress: resolved 819, reused 721, downloaded 8, added 8, done
+
+dependencies:
++ joi 18.1.2
+
+Done in 7.3s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add -D @types/hapi__joi
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +1
++
+Progress: resolved 820, reused 729, downloaded 1, added 1, done
+
+devDependencies:
++ @types/hapi__joi 17.1.15
+
+Done in 3.3s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+======================================================================================
+[1:27:46 pm] File change detected. Starting incremental compilation...
+
+[1:27:48 pm] Found 0 errors. Watching for file changes.
+
+APP DB URL: postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6slnslm5p6s73atcljg-a.singapore-postgres.render.com/perns_store_r9l1?sslmode=verify-full
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [NestFactory] Starting Nest application...
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] ConfigHostModule dependencies initialized +47ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] UsersModule dependencies initialized +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] AppModule dependencies initialized +2ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] ProductsModule dependencies initialized +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] CartModule dependencies initialized +2ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] PaymentModule dependencies initialized +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [InstanceLoader] OrdersModule dependencies initialized +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] AppController {/}: +22ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/, GET} route +8ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] UsersController {/users}: +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] ProductsController {/products}: +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/products, GET} route +4ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] CartController {/cart}: +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/cart, POST} route +3ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/cart, GET} route +2ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/cart/:productId, DELETE} route +4ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] OrdersController {/orders}: +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders/:id, GET} route +2ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders/razorpay/create-order, POST} route +4ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders/razorpay/verify, POST} route +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders, POST} route +2ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders, GET} route +3ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/orders/checkout, POST} route +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] PaymentController {/payment}: +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/payment/create-order, POST} route +3ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/payment/verify, POST} route +7ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RoutesResolver] AuthController {/auth}: +0ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/auth/register, POST} route +3ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/auth/login, POST} route +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [RouterExplorer] Mapped {/auth/me, GET} route +1ms
+[Nest] 13796  - 04/04/2026, 1:27:57 pm     LOG [NestApplication] Nest application successfully started +6ms
+
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
+======================================================================================
