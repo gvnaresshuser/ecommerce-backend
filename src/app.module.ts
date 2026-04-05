@@ -12,11 +12,13 @@ import paymentConfig from './config/payment.config';
 import * as Joi from 'joi';
 @Module({
   imports: [ConfigModule.forRoot({
-    isGlobal: true, load: [paymentConfig],
+    isGlobal: true, 
+    envFilePath: `.env.${process.env.NODE_ENV}`,
+    load: [paymentConfig],
     validationSchema: Joi.object({
       RAZORPAY_KEY_ID: Joi.string().required(),
       RAZORPAY_KEY_SECRET: Joi.string().required(),
-    }), envFilePath: '.env'
+    })
   }),
     UsersModule, ProductsModule, CartModule, OrdersModule, PaymentModule, AuthModule,],
   controllers: [AppController],

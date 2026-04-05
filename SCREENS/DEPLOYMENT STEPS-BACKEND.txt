@@ -1,0 +1,314 @@
+LIVE FRONTEND REACT JS APP URL:
+------------------------------
+https://react-ecommerce-frontend-alpha.vercel.app/
+
+LIVE BACKEND URL:
+----------------
+https://ecommerce-backend-1msn.onrender.com
+------------------------------------------------------------------------
+Push backend app to git repo
+https://github.com/
+gvnaresshuser
+
+🧱 STEP 1: Push Code to GitHub
+✅ Initialize Git
+git init
+git add .
+git commit -m "Initial commit"
+
+✅ Create repo on GitHub
+
+Then:
+
+git remote add origin https://github.com/your-username/your-repo.git
+git remote add origin https://github.com/gvnaresshuser/ecommerce-backend.git
+git branch -M main
+git push -u origin main
+
+=============================================================================================
+🟢 STEP 3: Deploy NestJS (Render)
+🔥 Steps
+Go to Render
+Click New → Web Service
+Connect GitHub repo
+⚙️ Settings
+Setting	Value
+Runtime	Node
+🚀 Final Render Config (pnpm)
+Build Command:
+pnpm install -g pnpm && pnpm install && pnpm run build
+
+Start Command:
+pnpm run start:prod
+=============================================================================================
+https://render.com/
+https://dashboard.render.com/
+google login
+=============================================================================================
+✅ Alternative (even better)
+
+If your repo has:
+
+pnpm-lock.yaml
+
+👉 Render usually auto-detects pnpm
+
+Then you can simply use:
+
+pnpm install
+=============================================================================================
+🌐 Environment Variables
+
+Add:
+
+DATABASE_URL=your_db_url
+JWT_SECRET=your_secret
+NODE_ENV=production
+---------------------------------------------------------------
+PORT=3000
+DATABASE_URL=postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6slnslm5p6s73atcljg-a.singapore-postgres.render.com/perns_store_r9l1?sslmode=verify-full
+JWT_SECRET=6cdadfa020cb901e7579a0da6f6fae70b735348462a65e7aeceb4f0886decf26
+RAZORPAY_KEY_ID=rzp_test_7loOYJatPLp2HD
+RAZORPAY_KEY_SECRET=eUO2oYhFEu7XlbzOopp6UYGL
+---------------------------------------------------------------
+=============================================================================================
+🚀 Deploy
+
+You’ll get:
+
+https://your-backend.onrender.com
+https://ecommerce-backend-1msn.onrender.com
+=============================================================================================
+ecommerce-backend
+Elixir
+Free
+Upgrade your instance
+
+Connect
+
+Manual Deploy
+Service ID:
+srv-d78tda4hg0os73dsucp0
+
+gvnaresshuser / ecommerce-backend
+main
+https://ecommerce-backend-1msn.onrender.com
+=============================================================================================
+LIVE BACKEND URL:
+----------------
+https://ecommerce-backend-1msn.onrender.com
+=============================================================================================
+ADD ENVIRONMENT VARIABLE IN FRONTEND WITH BACKEND URL - CONNECTING THE TWO
+🔗 STEP 4: Connect Frontend → Backend
+
+Update Axios base URL:
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  withCredentials: true,
+});
+=============================================================================================
+IN BACKEND SERVER ENSURE THE FOLLOWING:
+---------------------------------------
+🔥 STEP 5: Enable CORS (VERY IMPORTANT)
+
+E:\MURALI\NEST-JS\ecommerce-backend\src\main.ts
+
+In NestJS:
+
+app.enableCors({
+  origin: "https://your-app.vercel.app",
+  credentials: true,
+});
+-----------------------------------------------------
+.env
+FRONTEND_URL=http://localhost:5173
+#FRONTEND_URL=https://react-ecommerce-frontend-alpha.vercel.app
+
+import { ConfigService } from '@nestjs/config';
+  const configService = app.get(ConfigService);
+    app.enableCors({
+    origin: configService.get<string>('FRONTEND_URL'),// your Vite app
+    credentials: true,
+  });
+-----------------------------------------------------
+🔥 Alternative (Quick way without ConfigModule)
+
+If you want simple (not recommended for large apps):
+
+app.enableCors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+});
+
+
+=============================================================================================
+IN BACKEND SERVER ENSURE THE FOLLOWING:
+---------------------------------------
+🍪 STEP 6: Fix Cookies (JWT)
+
+In production:
+
+res.cookie('jwt', token, {
+  httpOnly: true,
+  secure: true, // ✅ REQUIRED for HTTPS
+  sameSite: 'none',
+});
+
+GIT PUSH AND REDEPLOY....
+=============================================================================================
+ANY CODE CHANGE...DO THIS
+
+git add .
+git commit -m "fixed login bug and improved UI"
+git push
+=============================================================================================
+=============================================================================================
+=============================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>git init
+Reinitialized existing Git repository in E:/MURALI/NEST-JS/ecommerce-backend/.git/
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add .
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/0000_flat_dormammu.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/0001_busy_nightcrawler.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/0002_medical_changeling.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/meta/0000_snapshot.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/meta/0001_snapshot.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/meta/0002_snapshot.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/meta/_journal.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pnpm-lock.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/auth/auth.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/cart/cart.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/orders/orders.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/payment/payment.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/products/products.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/users/users.module.ts', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "Initial commit"
+[master (root-commit) 372b24e] Initial commit
+ 85 files changed, 12942 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .prettierrc
+ create mode 100644 README.md
+ create mode 100644 SCREENS/Http Header.png
+ create mode 100644 SCREENS/Notes.png
+ create mode 100644 SCREENS/STEPS.txt
+ create mode 100644 SCREENS/TABLES.txt
+ create mode 100644 SCREENS/TERMINAL-OUTPUT.txt
+ create mode 100644 SCREENS/XTRA.txt
+ create mode 100644 drizzle.config.ts
+ create mode 100644 drizzle/0000_flat_dormammu.sql
+ create mode 100644 drizzle/0001_busy_nightcrawler.sql
+ create mode 100644 drizzle/0002_medical_changeling.sql
+ create mode 100644 drizzle/meta/0000_snapshot.json
+ create mode 100644 drizzle/meta/0001_snapshot.json
+ create mode 100644 drizzle/meta/0002_snapshot.json
+ create mode 100644 drizzle/meta/_journal.json
+ create mode 100644 ecommerce-backend-nest-js-05-04-2026.zip
+ create mode 100644 eslint.config.mjs
+ create mode 100644 nest-cli.json
+ create mode 100644 package.json
+ create mode 100644 pnpm-lock.yaml
+ create mode 100644 src/app.controller.spec.ts
+ create mode 100644 src/app.controller.ts
+ create mode 100644 src/app.module.ts
+ create mode 100644 src/app.service.ts
+ create mode 100644 src/common/decorators/current-user/current-user.decorator.ts
+ create mode 100644 src/common/filters/http-exception/http-exception.filter.spec.ts
+ create mode 100644 src/common/filters/http-exception/http-exception.filter.ts
+ create mode 100644 src/common/guards/jwt/jwt.guard.spec.ts
+ create mode 100644 src/common/guards/jwt/jwt.guard.ts
+ create mode 100644 src/common/interceptors/response/response.interceptor.spec.ts
+ create mode 100644 src/common/interceptors/response/response.interceptor.ts
+ create mode 100644 src/common/pipes/parse-int/parse-int.pipe.spec.ts
+ create mode 100644 src/common/pipes/parse-int/parse-int.pipe.ts
+ create mode 100644 src/common/pipes/reject-empty/reject-empty.pipe.spec.ts
+ create mode 100644 src/common/pipes/reject-empty/reject-empty.pipe.ts
+ create mode 100644 src/common/types/request-with-user.ts
+ create mode 100644 src/config/payment.config.ts
+ create mode 100644 src/db/drizzle.ts
+ create mode 100644 src/db/schema/index copy.ts
+ create mode 100644 src/db/schema/index.ts
+ create mode 100644 src/db/seed/seed.ts
+ create mode 100644 src/main.ts
+ create mode 100644 src/modules/auth/auth.controller.spec.ts
+ create mode 100644 src/modules/auth/auth.controller.ts
+ create mode 100644 src/modules/auth/auth.module.ts
+ create mode 100644 src/modules/auth/auth.service.spec.ts
+ create mode 100644 src/modules/auth/auth.service.ts
+ create mode 100644 src/modules/auth/jwt.strategy/jwt.strategy.spec.ts
+ create mode 100644 src/modules/auth/jwt.strategy/jwt.strategy.ts
+ create mode 100644 src/modules/cart/cart.controller.spec.ts
+ create mode 100644 src/modules/cart/cart.controller.ts
+ create mode 100644 src/modules/cart/cart.module.ts
+ create mode 100644 src/modules/cart/cart.service.spec.ts
+ create mode 100644 src/modules/cart/cart.service.ts
+ create mode 100644 src/modules/cart/dto/add-to-cart.dto.ts
+ create mode 100644 src/modules/orders/dto/create-order.dto.ts
+ create mode 100644 src/modules/orders/orders.controller.spec.ts
+ create mode 100644 src/modules/orders/orders.controller.ts
+ create mode 100644 src/modules/orders/orders.module.ts
+ create mode 100644 src/modules/orders/orders.service.spec.ts
+ create mode 100644 src/modules/orders/orders.service.ts
+ create mode 100644 src/modules/payment/payment.controller.spec.ts
+ create mode 100644 src/modules/payment/payment.controller.ts
+ create mode 100644 src/modules/payment/payment.module.ts
+ create mode 100644 src/modules/payment/payment.service.spec.ts
+ create mode 100644 src/modules/payment/payment.service.ts
+ create mode 100644 src/modules/products/dto/filter-products.dto.ts
+ create mode 100644 src/modules/products/products.controller.spec.ts
+ create mode 100644 src/modules/products/products.controller.ts
+ create mode 100644 src/modules/products/products.module.ts
+ create mode 100644 src/modules/products/products.service.spec.ts
+ create mode 100644 src/modules/products/products.service.ts
+ create mode 100644 src/modules/users/dto/login.dto.ts
+ create mode 100644 src/modules/users/dto/register.dto.ts
+ create mode 100644 src/modules/users/users.controller.spec.ts
+ create mode 100644 src/modules/users/users.controller.ts
+ create mode 100644 src/modules/users/users.module.ts
+ create mode 100644 src/modules/users/users.service.spec.ts
+ create mode 100644 src/modules/users/users.service.ts
+ create mode 100644 test/app.e2e-spec.ts
+ create mode 100644 test/jest-e2e.json
+ create mode 100644 tsconfig.build.json
+ create mode 100644 tsconfig.json
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================
+=============================================================================================

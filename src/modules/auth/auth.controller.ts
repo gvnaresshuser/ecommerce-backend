@@ -24,17 +24,37 @@ export class AuthController {
     async login(@Body() dto: LoginDto, @Res({ passthrough: true }) res: Response) {
         const result = await this.authService.login(dto);
 
-        res.cookie('jwt', result.access_token, {//manually set cookie
+        //------------------- DEVELOPMENT --------------------------
+        /* res.cookie('jwt', result.access_token, {//manually set cookie
             httpOnly: true,
             secure: false,
             sameSite: 'lax',
             maxAge: 24 * 60 * 60 * 1000,
-        });
+        }); */
+        //------------------- DEVELOPMENT --------------------------
+        //------------------- PRODUCTION --------------------------
+        /* res.cookie('jwt', result.access_token, {//manually set cookie
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 24 * 60 * 60 * 1000,
+        }); */
+        //------------------- PRODUCTION --------------------------
+        //----------------------- FROM ENV FILE -----------------------------------
+        const cookieConfig = {
+            httpOnly: process.env.COOKIE_HTTP_ONLY === 'true',
+            secure: process.env.COOKIE_SECURE === 'true',
+            sameSite: process.env.COOKIE_SAME_SITE as 'lax' | 'strict' | 'none',
+            maxAge: Number(process.env.COOKIE_MAX_AGE),
+        };
+        res.cookie('jwt', result.access_token, cookieConfig);
+        //----------------------- FROM ENV FILE -----------------------------------
+
 
         return { message: 'Login successful', token: result.access_token, };// Nest handles this
     }
     //---------------------------
-    @Post('logout') 
+    @Post('logout')
     logout(@Res({ passthrough: true }) res: Response) {
         res.clearCookie('jwt', {
             httpOnly: true,
