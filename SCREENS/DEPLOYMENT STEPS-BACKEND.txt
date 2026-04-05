@@ -325,6 +325,36 @@ git add .
 git commit -m "fixed start:prod path"
 git push
 -----------------------------------
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm run build
+
+> ecommerce-backend@0.0.1 build E:\MURALI\NEST-JS\ecommerce-backend
+> nest build
+
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add .
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "fixed start:prod path"
+[main 807ca6d] fixed start:prod path
+ 4 files changed, 88 insertions(+), 3 deletions(-)
+
+E:\MURALI\NEST-JS\ecommerce-backend>git push
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 1.75 KiB | 448.00 KiB/s, done.
+Total 10 (delta 9), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (9/9), completed with 9 local objects.
+To https://github.com/gvnaresshuser/ecommerce-backend.git
+   4c6ba0d..807ca6d  main -> main
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+------------------------------------
+
+
+  //await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT || 3000);
 
 =============================================================================================
 Microsoft Windows [Version 10.0.26100.8039]
