@@ -47,7 +47,15 @@ export class AuthController {
             sameSite: process.env.COOKIE_SAME_SITE as 'lax' | 'strict' | 'none',
             maxAge: Number(process.env.COOKIE_MAX_AGE),
         };
+        console.log('COOKIE CONFIG DEBUG 👉');
+        console.log('httpOnly:', process.env.COOKIE_HTTP_ONLY);
+        console.log('secure:', process.env.COOKIE_SECURE);
+        console.log('sameSite:', process.env.COOKIE_SAME_SITE);
+        console.log('maxAge:', process.env.COOKIE_MAX_AGE);
+        console.log('PARSED CONFIG:', cookieConfig);
+
         res.cookie('jwt', result.access_token, cookieConfig);
+
         //----------------------- FROM ENV FILE -----------------------------------
 
 

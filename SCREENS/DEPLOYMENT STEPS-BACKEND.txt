@@ -238,17 +238,93 @@ git add .
 git commit -m "removed env files from repo"
 git push
 ---------------------------------------------
+E:\MURALI\NEST-JS\ecommerce-backend>git rm --cached .env.production
+rm '.env.production'
+
+E:\MURALI\NEST-JS\ecommerce-backend>git rm --cached .env.development
+rm '.env.development'
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add .
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "removed env files from repo"
+[master 4c6ba0d] removed env files from repo
+ 4 files changed, 14 insertions(+), 41 deletions(-)
+ delete mode 100644 .env.development
+ delete mode 100644 .env.production
+
+E:\MURALI\NEST-JS\ecommerce-backend>git push
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 583 bytes | 583.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/gvnaresshuser/ecommerce-backend.git
+   0f57cdb..4c6ba0d  master -> master
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+------------------------------------------------------
+ALWAYS DEPLOY TO MAIN BRANCH NOT MASTER BRANCH
+E:\MURALI\NEST-JS\ecommerce-backend>git branch
+* master
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+
+git branch -M main
+git push -u origin main
+
+BUILD COMMAND IN RENDER.COM FOR BACKEND DEPLOY
+pnpm install -g pnpm && pnpm install && pnpm run build
+corepack enable && pnpm install && pnpm run build
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.33.0.tgz
 
 
 
 
+✅ Case 2: You set NODE_ENV
+Windows (your case):
+set NODE_ENV=development && pnpm run start:dev
+Mac/Linux:
+NODE_ENV=development pnpm run start:dev
+
+👉 Now NestJS loads:
+
+.env.development ✅
+
+FOR LOCALLY ALONE
+"start:dev": "nest start --watch"
+CHANGED TO
+"start:dev": "set NODE_ENV=development && nest start --watch"
+
+
+
+IN LIVE FRONTEND DON'T FORGET 
+VITE_API_URL
+https://ecommerce-backend-1msn.onrender.com
 
 
 
 
+VERY IMPORTANT
+"build": "nest build",
+"start:prod": "node dist/main.js",
+-----------------------------------
+🔍 Verify locally (must do once)
 
+Run:
 
+pnpm run build
 
+Then check:
+
+dist/main.js ✅ must exist
+🚀 Then push fix
+git add .
+git commit -m "fixed start:prod path"
+git push
+-----------------------------------
 
 =============================================================================================
 Microsoft Windows [Version 10.0.26100.8039]

@@ -8,6 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   const configService = app.get(ConfigService);
+  console.log('FRONTEND_URL:', configService.get('FRONTEND_URL'));
   //-------------------------- DEVELOPMENT -------------------------
   /*  app.enableCors({
      origin: "http://localhost:5173", // your Vite app
