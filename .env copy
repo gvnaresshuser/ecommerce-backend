@@ -1,0 +1,31 @@
+# 🌐 Server
+PORT=3000
+
+# 🗄️ PostgreSQL (Render)
+#DATABASE_URL=postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6slnslm5p6s73atcljg-a.singapore-postgres.render.com/perns_store_r9l1?sslmode=verify-full
+#17-04-2026
+DATABASE_URL=postgresql://pern_store_user:NsaWhmupwHKzJfkKH4MhX2ls2n3ZbJng@dpg-d7gnn8v7f7vs73d7h050-a.singapore-postgres.render.com/pern_store_fab5?sslmode=verify-full
+
+# 🔐 JWT - https://jwtsecrets.com/#generate
+JWT_SECRET=6cdadfa020cb901e7579a0da6f6fae70b735348462a65e7aeceb4f0886decf26
+
+RAZORPAY_KEY_ID=rzp_test_7loOYJatPLp2HD
+RAZORPAY_KEY_SECRET=eUO2oYhFEu7XlbzOopp6UYGL
+
+#FRONTEND_URL=http://localhost:5173
+#FRONTEND_URL=https://react-ecommerce-frontend-alpha.vercel.app
+
+#LIVE
+#COOKIE_HTTP_ONLY=true
+#COOKIE_SECURE=true
+#COOKIE_SAME_SITE=none
+#COOKIE_MAX_AGE=86400000
+
+#DEVELOPMENT
+COOKIE_HTTP_ONLY=true
+COOKIE_SECURE=false
+COOKIE_SAME_SITE=lax
+COOKIE_MAX_AGE=86400000
+
+NODE_ENV=development
+#NODE_ENV=production

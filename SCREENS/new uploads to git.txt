@@ -1,0 +1,79 @@
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add .
+warning: in the working copy of 'drizzle/meta/0000_snapshot.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/meta/_journal.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pnpm-lock.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/modules/auth/auth.module.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle/0000_modern_frank_castle.sql', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "latest ecommerce-backend"
+[main ae95f4f] latest ecommerce-backend
+ 42 files changed, 651 insertions(+), 889 deletions(-)
+ create mode 100644 "SCREENS/COMPLETE FLOW (START \342\206\222 END).png"
+ create mode 100644 SCREENS/CurrentUser() Decorator Vs RequestWithUser Interface.png
+ create mode 100644 SCREENS/Dependency Injection using Factory Provider in NestJS (for Database Module).png
+ create mode 100644 SCREENS/IMPORTANT_drizzle_migrations.png
+ create mode 100644 SCREENS/RequestWithUser.png
+ create mode 100644 SCREENS/ecom_nestjs_products.json
+ create mode 100644 SCREENS/orderItems-SCHEMA.png
+ create mode 100644 SCREENS/orders-SCHEMA.png
+ create mode 100644 SCREENS/products-SCHEMA.png
+ create mode 100644 SCREENS/users-SCHEMA.png
+ rename drizzle/{0000_flat_dormammu.sql => 0000_modern_frank_castle.sql} (90%)
+ delete mode 100644 drizzle/0001_busy_nightcrawler.sql
+ delete mode 100644 drizzle/0002_medical_changeling.sql
+ delete mode 100644 drizzle/meta/0001_snapshot.json
+ delete mode 100644 drizzle/meta/0002_snapshot.json
+ create mode 100644 ecommerce-backend-17-04-2026.zip
+ create mode 100644 ecommerce-backend-nest-js-LIVE-05-04-2026.zip
+ create mode 100644 src/common/utils/cookie.config.ts
+ create mode 100644 src/database/database.module.ts
+ create mode 100644 src/database/database.provider.ts
+ create mode 100644 src/database/database.service.spec.ts
+ create mode 100644 src/database/database.service.ts
+ delete mode 100644 src/db/schema/index copy.ts
+ create mode 100644 src/db/seed/seed copy.ts
+
+E:\MURALI\NEST-JS\ecommerce-backend>git push
+Enumerating objects: 86, done.
+Counting objects: 100% (86/86), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (51/51), done.
+Writing objects: 100% (54/54), 16.81 MiB | 1.33 MiB/s, done.
+Total 54 (delta 21), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (21/21), completed with 20 local objects.
+To https://github.com/gvnaresshuser/ecommerce-backend.git
+   de62800..ae95f4f  main -> main
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+====================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>cd ..
+
+E:\MURALI\NEST-JS>cd react-ecommerce-frontend
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git add .
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git commit -m "latest react-ecommerce-frontend"
+[main 0415adb] latest react-ecommerce-frontend
+ 7 files changed, 29 insertions(+), 4 deletions(-)
+ delete mode 100644 react-ecommerce-frontend-05-04-2026.zip
+ create mode 100644 react-ecommerce-frontend-17-04-2026.zip
+ create mode 100644 react-ecommerce-frontend-LIVE-05-04-2026-FINAL.zip
+ delete mode 100644 react-ecommerce-frontend-LIVE-05-04-2026.zip
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>git push
+Enumerating objects: 17, done.
+Counting objects: 100% (17/17), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 20.96 MiB | 1.27 MiB/s, done.
+Total 10 (delta 7), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (7/7), completed with 6 local objects.
+To https://github.com/gvnaresshuser/react-ecommerce-frontend.git
+   7ffd10b..0415adb  main -> main
+
+E:\MURALI\NEST-JS\react-ecommerce-frontend>
+
+====================================================================
