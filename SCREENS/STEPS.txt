@@ -1244,3 +1244,66 @@ ADD IN AUTH SERVICE ABOUT THIS DATABASE SERVICE
         private databaseService: DatabaseService, // ✅ injected
 
     ) { }      
+==================================================================
+Microsoft Windows [Version 10.0.26100.8039]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\MURALI\NEST-JS\ecommerce-backend>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .env
+        .env copy
+        .env.development
+        .env.production
+        SCREENS/new uploads to git.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add .
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+
+E:\MURALI\NEST-JS\ecommerce-backend>git add -f .env*
+
+E:\MURALI\NEST-JS\ecommerce-backend>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .env
+        new file:   .env copy
+        new file:   .env.development
+        new file:   .env.production
+        modified:   .gitignore
+        new file:   SCREENS/new uploads to git.txt
+
+
+E:\MURALI\NEST-JS\ecommerce-backend>git commit -m "Added env files,DEVELOPMENT database module with DI, and payment fixes for training"
+[main 96b1a0a] Added env files,DEVELOPMENT database module with DI, and payment fixes for training
+ 6 files changed, 164 insertions(+), 8 deletions(-)
+ create mode 100644 .env
+ create mode 100644 .env copy
+ create mode 100644 .env.development
+ create mode 100644 .env.production
+ create mode 100644 SCREENS/new uploads to git.txt
+
+E:\MURALI\NEST-JS\ecommerce-backend>git push
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 2.47 KiB | 316.00 KiB/s, done.
+Total 9 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 3 local objects.
+To https://github.com/gvnaresshuser/ecommerce-backend.git
+   ae95f4f..96b1a0a  main -> main
+
+E:\MURALI\NEST-JS\ecommerce-backend>
