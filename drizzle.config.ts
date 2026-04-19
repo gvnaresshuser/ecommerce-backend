@@ -1,4 +1,24 @@
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+
+// ✅ IMPORTANT FIX
+dotenv.config({
+    path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
+
+import { defineConfig } from 'drizzle-kit';
+
+console.log('DRIZZLE CONFIG DB:', process.env.DATABASE_URL); // debug
+
+export default defineConfig({
+    schema: './src/db/schema/index.ts',
+    out: './drizzle',
+    dialect: 'postgresql',
+    dbCredentials: {
+        url: process.env.DATABASE_URL!, // ✅ now works
+    },
+});
+//-----------------------------------------------------
+/* import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
@@ -8,7 +28,7 @@ export default defineConfig({
     dbCredentials: {
         url: process.env.DATABASE_URL!
     }
-});
+}); */
 //-------------------------------------------------
 /*
 IMPORTANT NOTE:

@@ -66,10 +66,25 @@ export class OrdersService {
         const order = await this.createOrder(userId, dto);
 
         // 2. Create Razorpay order
+        /* const razorpayOrder = await this.razorpay.orders.create({
+            //amount: Number(order.total) * 100, // paise
+            amount: Math.round(Number(order.total) * 100),
+            currency: 'INR',
+        }); */
+        //--------------------------------------
+        const total = Number(order.total);
+
+        if (!Number.isFinite(total)) {
+            throw new BadRequestException('Invalid order total');
+        }
+
+        const paise = Math.round(total * 100);
+
         const razorpayOrder = await this.razorpay.orders.create({
-            amount: Number(order.total) * 100, // paise
+            amount: paise,
             currency: 'INR',
         });
+        //--------------------------------------
 
         // 3. Save Razorpay orderId in DB
         await this.updateOrderRef(order.orderId, razorpayOrder.id);

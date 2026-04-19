@@ -1136,3 +1136,111 @@ APP DB URL: postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6
 [Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/logout, POST} route +2ms
 [Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [RouterExplorer] Mapped {/auth/me, GET} route +2ms
 [Nest] 17984  - 04/04/2026, 6:01:53 pm     LOG [NestApplication] Nest application successfully started +9ms
+
+
+
+-- Drop child tables first
+-- Step 1: Drop everything
+DROP TABLE IF EXISTS ecom_nestjs_orderitems CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_orders CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_products CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_users CASCADE;
+
+DROP TYPE IF EXISTS order_status CASCADE;
+DROP TYPE IF EXISTS payment CASCADE;
+
+-- Step 2: Reset migration history
+DROP TABLE IF EXISTS drizzle_migrations;
+
+DROP TABLE IF EXISTS drizzle._drizzle_migrations;
+OTHERWISE DROP MANUALLY IN STUDIO
+
+SELECT tablename 
+FROM pg_tables 
+WHERE schemaname = 'public';
+
+
+DRIZZLE-QUERIES:
+---------------
+https://orm.drizzle.team/docs/rqb-v2#find-first
+https://orm.drizzle.team/docs/rqb-v2#find-many
+https://orm.drizzle.team/docs/insert
+https://orm.drizzle.team/docs/update
+https://orm.drizzle.team/docs/operators
+https://orm.drizzle.team/docs/perf-queries
+https://orm.drizzle.team/docs/perf-queries#placeholder
+https://orm.drizzle.team/docs/set-operations
+https://orm.drizzle.team/docs/transactions
+https://orm.drizzle.team/docs/batch-api
+
+CROSS-ENV TO LOAD DEVELOPMENT AND PRODUCTION ENV FILES
+pnpm add cross-env
+
+
+
+==================================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm start:dev
+
+> ecommerce-backend@0.0.1 start:dev E:\MURALI\NEST-JS\ecommerce-backend
+> cross-env NODE_ENV=development nest start --watch
+
+'cross-env' is not recognized as an internal or external command,
+operable program or batch file.
+ ELIFECYCLE  Command failed with exit code 1.
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm add cross-env
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 10.32.1 → 10.33.0.   │
+   │   Changelog: https://pnpm.io/v/10.33.0   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+ WARN  5 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5, glob@10.5.0, glob@7.2.3, inflight@1.0.6
+Packages: +2
+++
+Progress: resolved 822, reused 730, downloaded 2, added 2, done
+
+dependencies:
++ cross-env 10.1.0
+
+Done in 4m 41.9s using pnpm v10.32.1
+
+E:\MURALI\NEST-JS\ecommerce-backend>
+
+============================================================================
+Dependency Injection using Factory Provider in NestJS (for Database Module)
+----------------------------------------------------------------------------
+nest g module database
+nest g service database
+
+👉 + manually create:
+database.provider.ts
+----------------------------------
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g module database
+CREATE src/database/database.module.ts (89 bytes)
+UPDATE src/app.module.ts (1818 bytes)
+
+E:\MURALI\NEST-JS\ecommerce-backend>nest g service database
+CREATE src/database/database.service.ts (96 bytes)
+CREATE src/database/database.service.spec.ts (492 bytes)
+UPDATE src/database/database.module.ts (175 bytes)
+
+----------------------------------
+1. Folder Structure
+src/
+ └── database/
+      ├── database.module.ts
+      ├── database.provider.ts
+      ├── database.service.ts
+
+ADD IN AUTH SERVICE ABOUT THIS DATABASE SERVICE
+
+    constructor(private jwtService: JwtService,
+        private databaseService: DatabaseService, // ✅ injected
+
+    ) { }      

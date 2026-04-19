@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
+  console.log('NODE_ENV:', process.env.NODE_ENV);
   const configService = app.get(ConfigService);
   console.log('FRONTEND_URL:', configService.get('FRONTEND_URL'));
   //-------------------------- DEVELOPMENT -------------------------

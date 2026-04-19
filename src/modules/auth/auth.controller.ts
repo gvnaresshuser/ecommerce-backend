@@ -8,6 +8,7 @@ import { RegisterDto } from '../users/dto/register.dto';
 import { Get, UseGuards } from '@nestjs/common';
 import { CurrentUser } from 'src/common/decorators/current-user/current-user.decorator';
 import { JwtAuthGuard } from 'src/common/guards/jwt/jwt.guard';
+import { getCookieConfigWithExpiry, getCookieConfig } from 'src/common/utils/cookie.config';
 
 @Controller('auth')
 export class AuthController {
@@ -54,7 +55,8 @@ export class AuthController {
         console.log('maxAge:', process.env.COOKIE_MAX_AGE);
         console.log('PARSED CONFIG:', cookieConfig);
 
-        res.cookie('jwt', result.access_token, cookieConfig);
+        /////res.cookie('jwt', result.access_token, cookieConfig);
+        res.cookie('jwt', result.access_token, getCookieConfigWithExpiry());
 
         //----------------------- FROM ENV FILE -----------------------------------
 
@@ -62,13 +64,28 @@ export class AuthController {
         return { message: 'Login successful', token: result.access_token, };// Nest handles this
     }
     //---------------------------
+    /*    @Post('logout')
+       logout(@Res({ passthrough: true }) res: Response) {
+           res.clearCookie('jwt', {
+               httpOnly: true,
+               secure: false,
+               sameSite: 'lax',
+           });
+           return { message: 'Logged out' };
+       } */
+    //----------------------------
     @Post('logout')
     logout(@Res({ passthrough: true }) res: Response) {
-        res.clearCookie('jwt', {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
-        });
+
+        const cookieConfig = {
+            httpOnly: process.env.COOKIE_HTTP_ONLY === 'true',
+            secure: process.env.COOKIE_SECURE === 'true',
+            sameSite: process.env.COOKIE_SAME_SITE as 'lax' | 'strict' | 'none',
+        };
+
+        ////res.clearCookie('jwt', cookieConfig);
+        res.clearCookie('jwt', getCookieConfig());
+
         return { message: 'Logged out' };
     }
     //---------------------------

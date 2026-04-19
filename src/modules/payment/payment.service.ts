@@ -10,10 +10,33 @@ export class PaymentService {
   });
 
   async createRazorpayOrder(amount: number) {
+    const numericAmount = Number(amount);
+
+    if (!Number.isFinite(numericAmount)) {
+      throw new Error('Invalid amount');
+    }
+
+    // ✅ Convert to paise safely
+    const paise = Math.round(numericAmount * 100);
+
+    if (!Number.isInteger(paise)) {
+      throw new Error('Amount conversion failed');
+    }
+
+    console.log('Final Razorpay Amount (paise):', paise); // debug
+
     return this.razorpay.orders.create({
-      amount: Math.round(amount * 100), // paise
+      amount: paise,
       currency: 'INR',
       receipt: `receipt_${Date.now()}`,
     });
   }
+
+  /*  async createRazorpayOrder(amount: number) {
+     return this.razorpay.orders.create({
+       amount: Math.round(amount * 100), // paise
+       currency: 'INR',
+       receipt: `receipt_${Date.now()}`,
+     });
+   } */
 }

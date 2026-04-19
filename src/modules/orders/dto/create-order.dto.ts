@@ -22,8 +22,8 @@ export class CreateOrderDto {
     @Type(() => OrderItemDto)
     items!: OrderItemDto[];
 
-  /*   @IsEnum(['CASH', 'CARD', 'UPI', 'RAZORPAY'])
-    paymentMethod!: 'CASH' | 'CARD' | 'UPI' | 'RAZORPAY'; */
+    /*   @IsEnum(['CASH', 'CARD', 'UPI', 'RAZORPAY'])
+      paymentMethod!: 'CASH' | 'CARD' | 'UPI' | 'RAZORPAY'; */
     @IsEnum(PaymentMethod)
     paymentMethod!: PaymentMethod;
 }

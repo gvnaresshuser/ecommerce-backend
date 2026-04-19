@@ -8,11 +8,16 @@ import { CartModule } from './modules/cart/cart.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { DatabaseModule } from './database/database.module';
 import paymentConfig from './config/payment.config';
 import * as Joi from 'joi';
+
+//pnpm add cross-env
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 @Module({
   imports: [ConfigModule.forRoot({
-    isGlobal: true, 
+    isGlobal: true,
     envFilePath: `.env.${process.env.NODE_ENV}`,
     load: [paymentConfig],
     validationSchema: Joi.object({
@@ -20,11 +25,12 @@ import * as Joi from 'joi';
       RAZORPAY_KEY_SECRET: Joi.string().required(),
     })
   }),
-    UsersModule, ProductsModule, CartModule, OrdersModule, PaymentModule, AuthModule,],
+    UsersModule, ProductsModule, CartModule, OrdersModule, PaymentModule, AuthModule, DatabaseModule,],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {
+}
 /*
 🎯 FINAL FLOW
 .env → payment.config.ts → ConfigModule → ConfigService → OrdersService

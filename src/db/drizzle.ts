@@ -1,4 +1,23 @@
-import 'dotenv/config'; // ✅ VERY IMPORTANT
+import * as dotenv from 'dotenv';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
+import * as schema from './schema';
+
+dotenv.config({
+    path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
+
+console.log('APP DB URL:', process.env.DATABASE_URL);
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+    max: 20,
+});
+
+export const db = drizzle(pool, { schema });
+//---------------------------------------------------
+/* import 'dotenv/config'; // ✅ VERY IMPORTANT
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema';
@@ -12,7 +31,7 @@ const pool = new Pool({
 });
 
 export const db = drizzle(pool, { schema });
-
+ */
 //-----------------------------------------------------
 /* import 'dotenv/config'; // ✅ VERY IMPORTANT
 import { drizzle } from 'drizzle-orm/node-postgres';

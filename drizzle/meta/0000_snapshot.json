@@ -1,5 +1,5 @@
 {
-  "id": "fe31aeac-63bd-40be-a809-b94d07e29096",
+  "id": "cd8abacd-bc82-4db2-a2ea-781bbb719a42",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -92,7 +92,8 @@
         },
         "status": {
           "name": "status",
-          "type": "varchar(20)",
+          "type": "order_status",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         },
@@ -105,18 +106,24 @@
         },
         "amount": {
           "name": "amount",
-          "type": "real",
+          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": false
         },
         "total": {
           "name": "total",
-          "type": "real",
+          "type": "numeric(10, 2)",
           "primaryKey": false,
           "notNull": false
         },
         "ref": {
           "name": "ref",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "payment_id": {
+          "name": "payment_id",
           "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false
@@ -342,6 +349,18 @@
     }
   },
   "enums": {
+    "public.order_status": {
+      "name": "order_status",
+      "schema": "public",
+      "values": [
+        "PLACED",
+        "PAID",
+        "FAILED",
+        "SHIPPED",
+        "DELIVERED",
+        "CANCELLED"
+      ]
+    },
     "public.payment": {
       "name": "payment",
       "schema": "public",

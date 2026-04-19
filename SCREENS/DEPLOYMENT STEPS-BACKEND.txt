@@ -310,6 +310,7 @@ https://ecommerce-backend-1msn.onrender.com
 VERY IMPORTANT
 "build": "nest build",
 "start:prod": "node dist/main.js",
+"start:prod": "node dist/src/main.js"
 -----------------------------------
 🔍 Verify locally (must do once)
 
@@ -319,7 +320,7 @@ pnpm run build
 
 Then check:
 
-dist/main.js ✅ must exist
+dist/main.js ✅ must exist - "start:prod": "node dist/src/main.js"
 🚀 Then push fix
 git add .
 git commit -m "fixed start:prod path"
@@ -356,9 +357,7 @@ E:\MURALI\NEST-JS\ecommerce-backend>
   //await app.listen(process.env.PORT ?? 3000);
   await app.listen(process.env.PORT || 3000);
   
-  
-  ADD THIS IN tsconfig.json FILE
-   "rootDir": "./src",
+
   
 git add .
 git commit -m "fixed build output path"
@@ -390,8 +389,57 @@ Menu
 ==> Running 'pnpm run start:prod'
 ! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.33.0.tgz
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  
-  
+  APP DB URL: postgresql://pern_store_user:vKYBVwPxADEKfk5ibKG0fieFsSGm2IE2@dpg-d6slnslm5p6s73atcljg-a.singapore-postgres.render.com/perns_store_r9l1?sslmode=verify-full
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [NestFactory] Starting Nest application...
+==> No open ports detected, continuing to scan...
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] ConfigHostModule dependencies initialized +202ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] JwtModule dependencies initialized +0ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] UsersModule dependencies initialized +0ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] AppModule dependencies initialized +1ms
+Menu
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] ProductsModule dependencies initialized +0ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] CartModule dependencies initialized +2ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] PaymentModule dependencies initialized +85ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 201  - 04/05/2026, 7:00:16 AM     LOG [InstanceLoader] OrdersModule dependencies initialized +0ms
+FRONTEND_URL: https://react-ecommerce-frontend-alpha.vercel.app
+3000
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] AppController {/}: +6ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/, GET} route +3ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] UsersController {/users}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] ProductsController {/products}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/products, GET} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] CartController {/cart}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/cart, POST} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/cart, GET} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/cart/:productId, DELETE} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] OrdersController {/orders}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders/:id, GET} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders/razorpay/create-order, POST} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders/razorpay/verify, POST} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders, POST} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders, GET} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders/checkout, POST} route +85ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/orders/:id/status, PATCH} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] PaymentController {/payment}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/payment/create-order, POST} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/payment/verify, POST} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RoutesResolver] AuthController {/auth}: +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/auth/register, POST} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/auth/login, POST} route +0ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/auth/logout, POST} route +1ms
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [RouterExplorer] Mapped {/auth/me, GET} route +1ms
+==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+[Nest] 201  - 04/05/2026, 7:00:17 AM     LOG [NestApplication] Nest application successfully started +197ms
+==> Your service is live 🎉
+==> 
+==> ///////////////////////////////////////////////////////////
+==> 
+==> Available at your primary URL https://ecommerce-backend-1msn.onrender.com
+==> 
+==> ///////////////////////////////////////////////////////////
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
   
   
   
