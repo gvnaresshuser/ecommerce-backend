@@ -1,0 +1,150 @@
+Automate this fully so you don’t have to do manual DB cleanup every time.
+
+---
+
+# 🚀 Option 1: Single Command (Recommended)
+
+## ✅ Step 1: Create reset script in `package.json`
+
+Add this inside your `scripts`:
+
+```json id="9j8k3a"
+"scripts": {
+  "db:reset": "ts-node src/db/reset.ts && pnpm db:generate && pnpm db:migrate && pnpm db:seed"
+}
+```
+
+---
+
+## ✅ Step 2: Create `reset.ts`
+
+📁 `src/db/reset.ts`
+
+```ts id="c7m4pa"
+import { db } from '../db'; // adjust path if needed
+
+async function resetDatabase() {
+  console.log('🧹 Dropping all tables...');
+
+  await db.execute(`DROP TABLE IF EXISTS ecom_nestjs_orderitems CASCADE;`);
+  await db.execute(`DROP TABLE IF EXISTS ecom_nestjs_orders CASCADE;`);
+  await db.execute(`DROP TABLE IF EXISTS ecom_nestjs_products CASCADE;`);
+  await db.execute(`DROP TABLE IF EXISTS ecom_nestjs_users CASCADE;`);
+
+  console.log('🧹 Dropping ENUM types...');
+
+  await db.execute(`DROP TYPE IF EXISTS order_status CASCADE;`);
+  await db.execute(`DROP TYPE IF EXISTS payment CASCADE;`);
+
+  console.log('🧹 Dropping migration tables...');
+
+  await db.execute(`DROP TABLE IF EXISTS drizzle_migrations;`);
+  await db.execute(`DROP TABLE IF EXISTS drizzle._drizzle_migrations;`);
+
+  console.log('✅ Database reset completed');
+}
+
+resetDatabase()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error('❌ Reset failed:', err);
+    process.exit(1);
+  });
+```
+
+---
+
+## 🔥 Step 3: Run everything in ONE command
+
+```bash id="6h8x1q"
+pnpm db:reset
+```
+
+👉 This will:
+
+1. Drop all tables ✅
+2. Drop enums ✅
+3. Clear migrations ✅
+4. Generate migration ✅
+5. Migrate DB ✅
+6. Seed data ✅
+
+---
+
+# ⚠️ Important (Drizzle Folder)
+
+👉 This script **does NOT delete local `drizzle/` folder**
+
+So do this once:
+
+```bash id="2v4k7c"
+rm -rf drizzle
+```
+
+OR manually delete in VS Code
+
+---
+
+# 🚀 Option 2: Fully Automated (Advanced)
+
+If you want **100% automation**, update script:
+
+```json id="c2l9tm"
+"db:reset": "rimraf drizzle && ts-node src/db/reset.ts && pnpm db:generate && pnpm db:migrate && pnpm db:seed"
+```
+
+👉 Install rimraf:
+
+```bash id="6b1r0p"
+pnpm add rimraf -D
+```
+
+---
+
+# 💡 Bonus: Safer Reset (Optional)
+
+Add environment check:
+
+```ts id="l9k2qf"
+if (process.env.NODE_ENV === 'production') {
+  throw new Error('❌ Cannot reset production database');
+}
+```
+
+---
+
+# 🧠 Final Flow
+
+```text id="n4x7sz"
+db:reset
+   ↓
+drop tables
+   ↓
+drop enums
+   ↓
+clear migrations
+   ↓
+generate
+   ↓
+migrate
+   ↓
+seed
+```
+
+---
+
+# 🔥 Final Result
+
+👉 One command:
+
+```bash id="7y3k8v"
+pnpm db:reset
+```
+
+👉 Fully fresh database every time 🚀
+
+---
+
+If you want next level, I can:
+👉 Add **seed with random data (faker)**
+👉 Or create **multiple environments (dev/test/prod DB reset safely)** 👍
