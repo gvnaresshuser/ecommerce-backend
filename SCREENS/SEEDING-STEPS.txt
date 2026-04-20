@@ -1,0 +1,69 @@
+
+-- Drop child tables first
+-- Step 1: Drop everything
+DROP TABLE IF EXISTS ecom_nestjs_orderitems CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_orders CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_products CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_users CASCADE;
+
+DROP TYPE IF EXISTS order_status CASCADE;
+DROP TYPE IF EXISTS payment CASCADE;
+
+-- Step 2: Reset migration history
+DROP TABLE IF EXISTS drizzle_migrations;
+
+DROP TABLE IF EXISTS drizzle._drizzle_migrations;
+OTHERWISE DROP [ drizzle._drizzle_migrations ] MANUALLY IN STUDIO
+NOTE _drizzle_migrations TABLE IS IN drizzle SCHEMA NOT public SCHEMA
+
+SELECT tablename 
+FROM pg_tables 
+WHERE schemaname = 'public';
+
+DELETE drizzle folder MANUALLY and then run
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+
+CHECK TABLES AND ecom_nestjs_products TABLE TO BE SEEDED WITH DATA
+==================================================================
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:generate
+
+> ecommerce-backend@0.0.1 db:generate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit generate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+◇ injecting env (10) from .env.development // tip: ◈ encrypted .env [www.dotenvx.com]
+DRIZZLE CONFIG DB: postgresql://pern_store_user:NsaWhmupwHKzJfkKH4MhX2ls2n3ZbJng@dpg-d7gnn8v7f7vs73d7h050-a.singapore-postgres.render.com/pern_store_fab5?sslmode=verify-full
+4 tables
+ecom_nestjs_orderitems 5 columns 0 indexes 2 fks
+ecom_nestjs_orders 9 columns 0 indexes 1 fks
+ecom_nestjs_products 7 columns 0 indexes 0 fks
+ecom_nestjs_users 12 columns 1 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0000_adorable_multiple_man.sql 🚀
+
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:migrate
+
+> ecommerce-backend@0.0.1 db:migrate E:\MURALI\NEST-JS\ecommerce-backend
+> drizzle-kit migrate
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'E:\MURALI\NEST-JS\ecommerce-backend\drizzle.config.ts'
+◇ injecting env (10) from .env.development // tip: ◈ encrypted .env [www.dotenvx.com]
+DRIZZLE CONFIG DB: postgresql://pern_store_user:NsaWhmupwHKzJfkKH4MhX2ls2n3ZbJng@dpg-d7gnn8v7f7vs73d7h050-a.singapore-postgres.render.com/pern_store_fab5?sslmode=verify-full
+Using 'pg' driver for database querying
+[✓] migrations applied successfully!
+E:\MURALI\NEST-JS\ecommerce-backend>pnpm db:seed
+
+> ecommerce-backend@0.0.1 db:seed E:\MURALI\NEST-JS\ecommerce-backend
+> ts-node src/db/seed/seed.ts
+
+◇ injecting env (10) from .env.development // tip: ◈ secrets for agents [www.dotenvx.com]
+APP DB URL: postgresql://pern_store_user:NsaWhmupwHKzJfkKH4MhX2ls2n3ZbJng@dpg-d7gnn8v7f7vs73d7h050-a.singapore-postgres.render.com/pern_store_fab5?sslmode=verify-full
+🌱 Seeding started...
+✅ Seeding completed
+
+E:\MURALI\NEST-JS\ecommerce-backend>

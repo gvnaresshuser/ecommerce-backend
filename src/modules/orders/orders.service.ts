@@ -8,7 +8,7 @@ import Razorpay from 'razorpay';
 import * as crypto from 'crypto';
 import { orderStatusEnum, paymentEnum } from 'src/db/schema';
 
-import {  NotFoundException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 import { db } from '../../db/drizzle'; // adjust path if needed
 
 type OrderStatus = typeof orderStatusEnum.enumValues[number];
@@ -106,6 +106,7 @@ export class OrdersService {
 
         const secret = this.configService.get<string>('RAZORPAY_KEY_SECRET')!;
 
+        //https://razorpay.com/docs/payments/payment-gateway/ecommerce-plugins/build-your-own?search-string=razorpay_signature#to-verify-the-razorpay-signature-returned-to-you
         const generatedSignature = crypto
             .createHmac('sha256', secret)
             .update(`${razorpay_order_id}|${razorpay_payment_id}`)
@@ -191,13 +192,13 @@ export class OrdersService {
     }
 
     // 📦 GET USER ORDERS
-   /*  async getUserOrders(userId: number) {
-        return db
-            .select()
-            .from(orders)
-            .where(eq(orders.userId, userId))
-            .orderBy(desc(orders.date));
-    } */
+    /*  async getUserOrders(userId: number) {
+         return db
+             .select()
+             .from(orders)
+             .where(eq(orders.userId, userId))
+             .orderBy(desc(orders.date));
+     } */
 
     // 🔗 SAVE RAZORPAY REF
     async updateOrderRef(orderId: number, ref: string) {
@@ -247,28 +248,38 @@ export class OrdersService {
     }
     //------------------------------------------
     async getOrderById(userId: number, orderId: number) {
-  const [order] = await db
-    .select()
-    .from(orders)
-    .where(eq(orders.orderId, orderId));
+        const [order] = await db
+            .select()
+            .from(orders)
+            .where(eq(orders.orderId, orderId));
 
-  if (!order) throw new BadRequestException("Order not found");
+        if (!order) throw new BadRequestException("Order not found");
 
-  const items = await db
-    .select({
-      productId: orderItems.productId,
-      quantity: orderItems.quantity,
-      price: orderItems.price,
-      name: products.name,
-      imageUrl: products.imageUrl,
-    })
-    .from(orderItems)
-    .leftJoin(products, eq(orderItems.productId, products.productId))
-    .where(eq(orderItems.orderId, orderId));
+        const items = await db
+            .select({
+                productId: orderItems.productId,
+                quantity: orderItems.quantity,
+                price: orderItems.price,
+                name: products.name,
+                imageUrl: products.imageUrl,
+            })
+            .from(orderItems)
+            .leftJoin(products, eq(orderItems.productId, products.productId))
+            .where(eq(orderItems.orderId, orderId));
 
-  return {
-    ...order,
-    items,
-  };
+        return {
+            ...order,
+            items,
+        };
+    }
 }
-}
+/*
+crypto = a library used for security operations
+
+It helps you:
+
+encrypt data 🔒
+generate hashes
+create digital signatures
+verify data integrity
+*/

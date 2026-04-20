@@ -1,4 +1,4 @@
-import { Controller, Post,Patch, UseGuards, Req, Body, Param } from '@nestjs/common';
+import { Controller, Post, Patch, UseGuards, Req, Body, Param } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -96,4 +96,28 @@ import type { Something } from '...';
 Import Type	Use
 import { X }	Runtime value
 import type { X }	Type only ✅
+*/
+/*
+We have two GET routes:
+
+@Get(':id')
+getOrderById(...)
+@Get()
+getOrders(...)
+❓ When you call:
+GET http://localhost:3000/orders
+✅ It will call:
+@Get()
+getOrders(...)
+🧠 Why?
+
+Because:
+
+@Get() → matches exact path /orders
+@Get(':id') → matches dynamic path /orders/anything
+🔄 Matching logic
+Request URL	Matched Route
+/orders	@Get() ✅
+/orders/1	@Get(':id') ✅
+/orders/abc	@Get(':id') ✅
 */
