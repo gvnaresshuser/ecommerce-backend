@@ -1,0 +1,128 @@
+-- =========================================
+-- DROP ALL TABLES, INDEXES, AND TYPES
+-- =========================================
+
+DROP TABLE IF EXISTS ecom_nestjs_orderitems CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_orders CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_products CASCADE;
+DROP TABLE IF EXISTS ecom_nestjs_users CASCADE;
+
+DROP INDEX IF EXISTS idx_ecom_users_lower_email;
+DROP INDEX IF EXISTS idx_ecom_users_lower_username;
+
+DROP TYPE IF EXISTS payment CASCADE;
+
+
+-- =========================================
+-- CREATE PAYMENT ENUM TYPE
+-- =========================================
+
+CREATE TYPE payment AS ENUM (
+    'CASH',
+    'CARD',
+    'UPI',
+    'RAZORPAY'
+);
+
+
+-- =========================================
+-- USERS TABLE
+-- =========================================
+
+CREATE TABLE ecom_nestjs_users (
+    user_id SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(200),
+    fullname VARCHAR(100) NOT NULL,
+    google_id VARCHAR(100) UNIQUE,
+    roles VARCHAR(20)[] NOT NULL DEFAULT ARRAY['customer'],
+    address VARCHAR(200),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    country VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- =========================================
+-- INDEXES
+-- =========================================
+
+CREATE UNIQUE INDEX idx_ecom_users_lower_email
+ON ecom_nestjs_users (LOWER(email));
+
+CREATE UNIQUE INDEX idx_ecom_users_lower_username
+ON ecom_nestjs_users (LOWER(username));
+
+
+-- =========================================
+-- PRODUCTS TABLE
+-- =========================================
+
+CREATE TABLE ecom_nestjs_products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    slug VARCHAR(100) NOT NULL UNIQUE,
+    price NUMERIC(10,2) NOT NULL,
+    description TEXT NOT NULL,
+    image_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- =========================================
+-- ORDERS TABLE
+-- =========================================
+
+CREATE TABLE ecom_nestjs_orders (
+    order_id SERIAL PRIMARY KEY,
+
+    user_id INTEGER NOT NULL,
+
+    status VARCHAR(20) NOT NULL,
+
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    amount NUMERIC(10,2),
+
+    total NUMERIC(10,2),
+
+    ref VARCHAR(100),
+
+    payment_id VARCHAR(200),
+
+    payment_method payment,
+
+    CONSTRAINT fk_ecom_user
+        FOREIGN KEY (user_id)
+        REFERENCES ecom_nestjs_users(user_id)
+        ON DELETE CASCADE
+);
+
+
+-- =========================================
+-- ORDER ITEMS TABLE
+-- =========================================
+
+CREATE TABLE ecom_nestjs_orderitems (
+    orderitem_id SERIAL PRIMARY KEY,
+
+    order_id INTEGER NOT NULL,
+
+    product_id INTEGER NOT NULL,
+
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+
+    price NUMERIC(10,2) NOT NULL CHECK (price >= 0),
+
+    CONSTRAINT fk_ecom_order
+        FOREIGN KEY (order_id)
+        REFERENCES ecom_nestjs_orders(order_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_ecom_product
+        FOREIGN KEY (product_id)
+        REFERENCES ecom_nestjs_products(product_id)
+        ON DELETE CASCADE
+);

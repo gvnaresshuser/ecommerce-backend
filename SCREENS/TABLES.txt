@@ -1,3 +1,26 @@
+
+-- 
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'payment') THEN
+        CREATE TYPE payment AS ENUM ('CASH', 'CARD', 'UPI');
+    END IF;
+END
+$$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_enum 
+        WHERE enumlabel = 'RAZORPAY' 
+        AND enumtypid = 'payment'::regtype
+    ) THEN
+        ALTER TYPE payment ADD VALUE 'RAZORPAY';
+    END IF;
+END
+$$;
+
+---
 -- # ✅ 1. USERS TABLE
 CREATE TABLE IF NOT EXISTS ecom_nestjs_users (
     user_id SERIAL PRIMARY KEY,
@@ -21,7 +44,7 @@ ON ecom_nestjs_users (LOWER(email));
 -- Case-insensitive unique username
 CREATE UNIQUE INDEX IF NOT EXISTS idx_ecom_users_lower_username
 ON ecom_nestjs_users (LOWER(username));
-```
+
 
 ---
 
@@ -64,7 +87,6 @@ CREATE TABLE IF NOT EXISTS ecom_nestjs_orders (
 
 -- # ✅ 5. ORDER ITEMS TABLE
 
-```sql
 CREATE TABLE IF NOT EXISTS ecom_nestjs_orderitems (
     orderitem_id SERIAL PRIMARY KEY,
     order_id INT NOT NULL,
@@ -93,31 +115,80 @@ INSERT INTO ecom_nestjs_products
 (name, slug, price, description, image_url, created_at) 
 VALUES
 ('Wireless Mouse', 'wireless-mouse', 25.99, 'A sleek and responsive wireless mouse with ergonomic design.', 'https://www.sathya.in/media/3492/catalog/mouse.jpg', CURRENT_TIMESTAMP),
+
 ('Bluetooth Speaker', 'bluetooth-speaker', 45.00, 'Portable Bluetooth speaker with powerful bass and long battery life.', 'https://www.shutterstock.com/image-photo/black-portable-mini-speaker-colorful-600nw-2561079163.jpg', CURRENT_TIMESTAMP),
+
 ('Gaming Keyboard', 'gaming-keyboard', 89.50, 'Mechanical RGB gaming keyboard with customizable keys.', 'https://www.shutterstock.com/image-photo/gaming-keyboard-rgb-light-white-260nw-1920716873.jpg', CURRENT_TIMESTAMP),
+
 ('USB-C Charger', 'usb-c-charger', 19.99, 'Fast charging USB-C wall adapter for multiple devices.', 'https://m.media-amazon.com/images/I/71l+XBXDlVL.jpg', CURRENT_TIMESTAMP),
+
 ('Noise Cancelling Headphones', 'noise-cancelling-headphones', 120.00, 'Over-ear headphones with active noise cancellation and crystal clear audio.', 'https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:2000,ch:1125,q:80,w:2000/ThiXKkp4sA5QGWVKDWyt6g.jpg', CURRENT_TIMESTAMP),
-('Smartwatch', 'smartwatch', 75.49, 'Smartwatch with heart rate monitor, step tracker, and mobile notifications.', 'https://www.gonoise.com/cdn/shop/files/1_c95e5561-4f66-413d-b143-42d31821e554.webp?v=1721392308', CURRENT_TIMESTAMP);
 
--- 
-DO $$
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'payment') THEN
-        CREATE TYPE payment AS ENUM ('CASH', 'CARD', 'UPI');
-    END IF;
-END
-$$;
+('Smartwatch', 'smartwatch', 75.49, 'Smartwatch with heart rate monitor, step tracker, and mobile notifications.', 'https://www.gonoise.com/cdn/shop/files/1_c95e5561-4f66-413d-b143-42d31821e554.webp?v=1721392308', CURRENT_TIMESTAMP)
 
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_enum 
-        WHERE enumlabel = 'RAZORPAY' 
-        AND enumtypid = 'payment'::regtype
-    ) THEN
-        ALTER TYPE payment ADD VALUE 'RAZORPAY';
-    END IF;
-END
-$$;
+ON CONFLICT (name) DO NOTHING;
 
----
+
+
+
+-- =========================================
+-- SAMPLE PRODUCTS INSERT
+-- =========================================
+
+INSERT INTO ecom_nestjs_products
+(name, slug, price, description, image_url, created_at)
+VALUES
+
+(
+'Wireless Mouse',
+'wireless-mouse',
+25.99,
+'A sleek and responsive wireless mouse with ergonomic design.',
+'https://www.sathya.in/media/3492/catalog/mouse.jpg',
+CURRENT_TIMESTAMP
+),
+
+(
+'Bluetooth Speaker',
+'bluetooth-speaker',
+45.00,
+'Portable Bluetooth speaker with powerful bass and long battery life.',
+'https://www.shutterstock.com/image-photo/black-portable-mini-speaker-colorful-600nw-2561079163.jpg',
+CURRENT_TIMESTAMP
+),
+
+(
+'Gaming Keyboard',
+'gaming-keyboard',
+89.50,
+'Mechanical RGB gaming keyboard with customizable keys.',
+'https://www.shutterstock.com/image-photo/gaming-keyboard-rgb-light-white-260nw-1920716873.jpg',
+CURRENT_TIMESTAMP
+),
+
+(
+'USB-C Charger',
+'usb-c-charger',
+19.99,
+'Fast charging USB-C wall adapter for multiple devices.',
+'https://m.media-amazon.com/images/I/71l+XBXDlVL.jpg',
+CURRENT_TIMESTAMP
+),
+
+(
+'Noise Cancelling Headphones',
+'noise-cancelling-headphones',
+120.00,
+'Over-ear headphones with active noise cancellation and crystal clear audio.',
+'https://cdn.mos.cms.futurecdn.net/v2/t:0,l:0,cw:2000,ch:1125,q:80,w:2000/ThiXKkp4sA5QGWVKDWyt6g.jpg',
+CURRENT_TIMESTAMP
+),
+
+(
+'Smartwatch',
+'smartwatch',
+75.49,
+'Smartwatch with heart rate monitor, step tracker, and mobile notifications.',
+'https://www.gonoise.com/cdn/shop/files/1_c95e5561-4f66-413d-b143-42d31821e554.webp?v=1721392308',
+CURRENT_TIMESTAMP
+)

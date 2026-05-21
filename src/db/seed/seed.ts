@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { db } from '../drizzle';
 import { products } from '../schema';
-
+//TRUNCATE TABLE ecom_nestjs_products RESTART IDENTITY CASCADE;
 async function seed() {
     console.log('🌱 Seeding started...');
 
